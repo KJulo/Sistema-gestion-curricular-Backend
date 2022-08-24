@@ -1,0 +1,136 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model administrador {
+  id         String @id @default(uuid())
+  id_colegio String
+  nombres    String
+  apellidos  String
+  rut        String
+  contrasena String
+
+  colegio colegio @relation(fields: [id_colegio], references: [id])
+}
+
+model colegio {
+  id        String @id @default(uuid())
+  nombre    String
+  direccion String
+
+  administrador administrador[]
+  alumno        alumno[]
+}
+
+model alumno {
+  id         String @id @default(uuid())
+  id_colegio String
+  nombres    String
+  apellidos  String
+  rut        String
+  contrasena String
+
+  alumno_curso alumno_curso[]
+  asistencia   asistencia[]
+  nota         nota[]
+  colegio      colegio        @relation(fields: [id_colegio], references: [id])
+}
+
+model alumno_curso {
+  id        String @id @default(uuid())
+  id_curso  String
+  id_alumno String
+
+  alumno alumno @relation(fields: [id_alumno], references: [id])
+  curso  curso  @relation(fields: [id_curso], references: [id])
+}
+
+model profesor {
+  id         String @id @default(uuid())
+  id_colegio String
+  id_alumno  String
+  nombres    String
+  apellidos  String
+  rut        String
+  contrasena String
+
+  profesor_curso profesor_curso[]
+}
+
+model profesor_curso {
+  id          String @id @default(uuid())
+  id_curso    String
+  id_profesor String
+
+  curso    curso    @relation(fields: [id_curso], references: [id])
+  profesor profesor @relation(fields: [id_profesor], references: [id])
+}
+
+model curso {
+  id             String           @id @default(uuid())
+  nombre         String
+  anho           String
+  nota           nota[]
+  profesor_curso profesor_curso[]
+  asistencia     asistencia[]
+  alumno_curso   alumno_curso[]
+  foro           foro[]
+}
+
+model asistencia {
+  id         String   @id @default(uuid())
+  id_alumno  String?
+  id_curso   String?
+  asistencia String
+  fecha      DateTime
+  alumno     alumno?   @relation(fields: [id_alumno], references: [id])
+  curso      curso?    @relation(fields: [id_curso], references: [id])
+}
+
+model nota {
+  id          String  @id @default(uuid())
+  id_alumno   String
+  id_curso    String
+  nombre      String
+  nota        String
+  descripcion String
+  curso       curso?  @relation(fields: [id_curso], references: [id])
+  alumno      alumno? @relation(fields: [id_alumno], references: [id])
+}
+
+model foro {
+  id       String @id @default(uuid())
+  id_curso String
+  titulo   String
+
+  curso     curso       @relation(fields: [id_curso], references: [id])
+  contenido contenido[]
+}
+
+model contenido {
+  id          String @id @default(uuid())
+  id_foro     String
+  titulo      String
+  descripcion String
+  tipo        String
+
+  archivo archivo[]
+  foro    foro      @relation(fields: [id_foro], references: [id])
+}
+
+model archivo {
+  id           String @id @default(uuid())
+  id_contenido String
+  nombre       String
+  archivo      String
+
+  contenido contenido @relation(fields: [id_contenido], references: [id])
+}

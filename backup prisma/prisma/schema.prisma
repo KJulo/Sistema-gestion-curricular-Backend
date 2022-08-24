@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model administrador {
+  id         String @id @default(uuid())
+  id_colegio String
+  nombres    String
+  apellidos  String
+  rut        String
+  contrasena String
+}
+
+model colegio {
+  id               String @id @default(uuid())
+  id_administrador String
+  id_alumno        String
+  nombre           String
+  direccion        String
+}
+
+model alumno {
+  id         String @id @default(uuid())
+  id_colegio String
+  nombres    String
+  apellidos  String
+  rut        String
+  contrasena String
+}
+
+model profesor {
+  id         String @id @default(uuid())
+  id_colegio String
+  id_alumno  String
+  nombres    String
+  apellidos  String
+  rut        String
+  contrasena String
+}
+
+model curso {
+  id            String @id @default(uuid())
+  id_profesor   String
+  id_alumno     String
+  id_asistencia String
+  id_nota       String
+  id_foro       String
+  nombre        String
+  anio          String
+}
+
+model asistencia {
+  id         String @id @default(uuid())
+  id_curso   String
+  asistencia String
+}
+
+model nota {
+  id          String @id @default(uuid())
+  id_curso    String
+  nombre      String
+  nota        String
+  descripcion String
+}
+
+model foro {
+  id       String @id @default(uuid())
+  id_curso String
+  titulo   String
+}
+
+model contenido {
+  id          String @id @default(uuid())
+  id_foro     String
+  titulo      String
+  descripcion String
+}
