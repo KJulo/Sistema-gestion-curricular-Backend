@@ -14,7 +14,7 @@ function getAlumno(id) {
 }
 
 function getAlumnos(filterItems, ordersItems) {
-  return new Promise((resolve) => { 
+  return new Promise((resolve) => {
     const query = {};
 
     if (Object.keys(filterItems).length > 0) {
@@ -49,7 +49,14 @@ function getAlumnos(filterItems, ordersItems) {
 
 function createAlumno(nombres, idColegio, apellidos, rut, correo, contrasena) {
   return new Promise((resolve, reject) => {
-    if (!nombres && !idColegio && !apellidos && !rut && !correo && !contrasena) {
+    if (
+      !nombres &&
+      !idColegio &&
+      !apellidos &&
+      !rut &&
+      !correo &&
+      !contrasena
+    ) {
       reject(new Error("[Alumno invalido] Faltan datos"));
     } else {
       const alumno = {
@@ -59,7 +66,7 @@ function createAlumno(nombres, idColegio, apellidos, rut, correo, contrasena) {
         rut,
         correo,
         contrasena,
-      }
+      };
       if (validator.validateTypeVariablesModel(currentComponent, alumno)) {
         resolve(store.createAlumno(alumno));
       } else {
@@ -79,7 +86,15 @@ function updateAlumno(
   contrasena
 ) {
   return new Promise((resolve, reject) => {
-    if (!id && !nombres && !idColegio && !apellidos && !rut && !correo && !contrasena) {
+    if (
+      !id &&
+      !nombres &&
+      !idColegio &&
+      !apellidos &&
+      !rut &&
+      !correo &&
+      !contrasena
+    ) {
       reject(new Error("[Alumno invalido] Faltan datos"));
     } else {
       const alumno = {
@@ -90,14 +105,14 @@ function updateAlumno(
         rut,
         correo,
         contrasena,
-      }
+      };
       if (validator.validateTypeVariablesModel(currentComponent, alumno)) {
         resolve(store.updateAlumno(alumno));
       } else {
         reject(new Error("[Alumno invalido] Error en datos"));
       }
     }
-  })
+  });
 }
 
 function deleteAlumno(id) {
