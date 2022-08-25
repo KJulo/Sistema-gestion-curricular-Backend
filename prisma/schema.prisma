@@ -110,7 +110,6 @@ model foro {
   id       String @id @default(uuid())
   id_curso String
   titulo   String
-
   curso     curso       @relation(fields: [id_curso], references: [id])
   contenido contenido[]
 }
