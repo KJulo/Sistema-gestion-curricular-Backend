@@ -41,8 +41,8 @@ router.get("/", (req, res) => {
   }
   controller
     .getAdministradores(filterItems, orders)
-    .then((administrador) => {
-      response.success(req, res, administrador, 200);
+    .then((administradores) => {
+      response.success(req, res, administradores, 200);
     })
     .catch((err) => {
       console.log(err);
