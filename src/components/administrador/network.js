@@ -7,12 +7,12 @@ const response = require("../../network/response");
 
 router.get("/:id", (req, res) => {
   controller
-    .get(req.params.id)
+    .getAdministrador(req.params.id)
     .then((data) => {
       response.success(req, res, data, 200);
     })
     .catch((err) => {
-      response.error(req, res, "Error inesperado", err, 500);
+      response.error(req, res, "Error inesperado", null, 500, err);
     });
 });
 
@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];
-  
+
   if (Object.keys(req.query).length !== 0) {
     Object.keys(req.query).forEach((key) => {
       if (
@@ -39,11 +39,15 @@ router.get("/", (req, res) => {
       }
     });
   }
-  controller.getAdministrador(filterItems, orders)
+  controller
+    .getAdministradores(filterItems, orders)
     .then((administrador) => {
       response.success(req, res, administrador, 200);
     })
     .catch((err) => {
-      response.error(req, res, "Error inesperado", err, 500);
+      console.log(err);
+      response.error(req, res, "Error inesperado", null, 500, err);
     });
-})
+});
+
+module.exports = router;

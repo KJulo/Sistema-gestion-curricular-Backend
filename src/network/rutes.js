@@ -1,9 +1,9 @@
 // Rutas
-const example = require("../components/example/network.js");
+const administrador = require("../components/administrador/network");
 
 // Arreglo de rutas
 const router = function (server) {
-  server.use("/example", example);
+  server.use("/administrador", administrador);
 };
 
 module.exports = router;

@@ -16,19 +16,11 @@ const success = async function (req, res, data, typeResponse, status) {
     data = [];
   }
 
-  if (typeResponse == "paginatedResponse") {
-    response = {
-      status: statusMessage[status],
-      error: "",
-      data: data.results.items,
-    };
-  } else {
-    response = {
-      status: statusMessage[status],
-      error: "",
-      data,
-    };
-  }
+  response = {
+    status: statusMessage[status],
+    error: "",
+    data,
+  };
 
   res.status(status).send(response);
 };
@@ -44,20 +36,11 @@ const error = function (req, res, message, typeResponse, status, details) {
     message = statusMessage[status];
   }
 
-  if (typeResponse == "paginatedResponse") {
-    response = {
-      status: statusMessage[status],
-      error: message,
-      data: [],
-    };
-  } else {
-    response = {
-      status: statusMessage[status],
-      error: message,
-      data: [],
-    };
-  }
-
+  response = {
+    status: statusMessage[status],
+    error: message,
+    data: [],
+  };
   console.error(`[Response Error] ${details}`);
   res.status(status).send(response);
 };
