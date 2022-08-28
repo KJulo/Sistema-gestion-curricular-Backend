@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const config = require("./config");
-const databaseController = require("./database.js");
+const databaseController = require("./database");
 const rutes = require("./network/rutes");
 
 const app = express();
@@ -17,5 +17,5 @@ rutes(app);
 
 app.listen(app.get("port"), () => {
   console.log(` Server on Port: ${app.get("port")}`);
-  // databaseController.connectToPostgresql();
+  //databaseController.connectToPostgresql();
 });

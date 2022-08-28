@@ -5,40 +5,24 @@ const statusMessage = {
   500: "Internal error",
 };
 
-const success = async function (req, res, data, typeResponse, status) {
+const success = async (req, res, data, typeResponse, status) => {
   let response = {};
 
-  if (!status) {
-    status = 200;
-  }
-
-  if (!data) {
-    data = [];
-  }
-
   response = {
-    status: statusMessage[status],
+    status: statusMessage[status] || [],
     error: "",
-    data,
+    data: data || [],
   };
 
   res.status(status).send(response);
 };
 
-const error = function (req, res, message, typeResponse, status, details) {
+const error = (req, res, message, typeResponse, status, details) => {
   let response = {};
 
-  if (!status) {
-    status = 500;
-  }
-
-  if (!message) {
-    message = statusMessage[status];
-  }
-
   response = {
-    status: statusMessage[status],
-    error: message,
+    status: statusMessage[status] || statusMessage[500],
+    error: message || statusMessage[status],
     data: [],
   };
   console.error(`[Response Error] ${details}`);
