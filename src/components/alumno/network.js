@@ -82,7 +82,7 @@ router.post("/", (req, res) => {
 router.patch("/:id", (req, res) => {
   controller
     .updateAlumno(
-      req.body.id,
+      req.params.id,
       req.body.nombres,
       req.body.idColegio,
       req.body.apellidos,

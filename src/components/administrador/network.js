@@ -45,7 +45,7 @@ router.get("/", (req, res) => {
       response.success(req, res, administradores, 200);
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       response.error(req, res, "Error inesperado", null, 500, err);
     });
 });

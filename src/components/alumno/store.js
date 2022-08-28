@@ -18,9 +18,9 @@ async function createAlumno(alumno) {
     return newAlumno;
   } catch (error) {
     if (error.meta.cause) {
-      error.meta.cause = `[createClient] ${error.meta.cause}`;
+      error.meta.cause = `[createAlumno] ${error.meta.cause}`;
     } else {
-      error.meta.cause = `[createClient] ${error.meta.field_name}`;
+      error.meta.cause = `[createAlumno] ${error.meta.field_name}`;
     }
     return { catchError: true, ...error };
   }
@@ -35,9 +35,9 @@ async function updateAlumno(alumno) {
     return updatedAlumno;
   } catch (error) {
     if (error.meta.cause) {
-      error.meta.cause = `[createClient] ${error.meta.cause}`;
+      error.meta.cause = `[updateAlumno] ${error.meta.cause}`;
     } else {
-      error.meta.cause = `[createClient] ${error.meta.field_name}`;
+      error.meta.cause = `[updateAlumno] ${error.meta.field_name}`;
     }
     return { catchError: true, ...error };
   }
@@ -49,9 +49,9 @@ async function deleteAlumno(id) {
     return deletedAlumno;
   } catch (error) {
     if (error.meta.cause) {
-      error.meta.cause = `[deleteClient] ${error.meta.cause}`;
+      error.meta.cause = `[deleteAlumno] ${error.meta.cause}`;
     } else {
-      error.meta.cause = `[deleteClient] ${error.meta.field_name}`;
+      error.meta.cause = `[deleteAlumno] ${error.meta.field_name}`;
     }
 
     return { catchError: true, ...error };
