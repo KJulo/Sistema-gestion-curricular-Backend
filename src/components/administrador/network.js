@@ -9,7 +9,7 @@ router.get("/:id", (req, res) => {
   controller
     .getAdministrador(req.params.id)
     .then((data) => {
-      response.success(req, res, data, 200);
+      response.success(req, res, data, null, 200);
     })
     .catch((err) => {
       response.error(req, res, "Error inesperado", null, 500, err);
@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
   controller
     .getAdministradores(filterItems, orders)
     .then((administradores) => {
-      response.success(req, res, administradores, 200);
+      response.success(req, res, administradores, null, 200);
     })
     .catch((err) => {
       console.error(err);

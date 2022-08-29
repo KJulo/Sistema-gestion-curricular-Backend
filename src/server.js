@@ -17,5 +17,5 @@ rutes(app);
 
 app.listen(app.get("port"), () => {
   console.log(` Server on Port: ${app.get("port")}`);
-  //databaseController.connectToPostgresql();
+  // databaseController.connectToPostgresql();
 });

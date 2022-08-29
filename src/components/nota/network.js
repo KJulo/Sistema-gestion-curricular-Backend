@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
   controller
     .getNotas(filterItems, orders)
     .then((notas) => {
-      response.success(req, res, notas, 200);
+      response.success(req, res, notas,null, 200);
     })
     .catch((err) => {
       console.log(err);

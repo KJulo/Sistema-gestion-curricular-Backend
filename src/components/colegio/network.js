@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
   controller
     .getColegios(filterItems, orders)
     .then((colegio) => {
-      response.success(req, res, colegio, 200);
+      response.success(req, res, colegio,null, 200);
     })
     .catch((err) => {
       console.log(err);

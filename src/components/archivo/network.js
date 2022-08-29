@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
   controller
     .getArchivos(filterItems, orders)
     .then((archivos) => {
-      response.success(req, res, archivos, 200);
+      response.success(req, res, archivos,null, 200);
     })
     .catch((err) => {
       console.log(err);

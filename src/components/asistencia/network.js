@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
   controller
     .getAsistencia(filterItems, orders)
     .then((asistencia) => {
-      response.success(req, res, asistencia, 200);
+      response.success(req, res, asistencia,null, 200);
     })
     .catch((err) => {
       console.log(err);

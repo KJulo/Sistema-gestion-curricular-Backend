@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
   controller
     .getForos(filterItems, orders)
     .then((foros) => {
-      response.success(req, res, foros, 200);
+      response.success(req, res, foros,null, 200);
     })
     .catch((err) => {
       console.log(err);
