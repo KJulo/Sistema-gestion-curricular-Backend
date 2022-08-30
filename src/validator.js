@@ -15,7 +15,7 @@ function validateTypeVariablesModel(modelName, object) {
     }
 
     if (object[key]) {
-      const typeVariable = dataModel.find((field) => field.name === key).type;
+      const typeVariable = dataModel.find((field) => field.name === key);
 
       if (typeVariable === "Int") {
         if (!Number.isInteger(object[key])) {

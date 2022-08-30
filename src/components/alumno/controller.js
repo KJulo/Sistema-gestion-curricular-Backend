@@ -47,11 +47,11 @@ function getAlumnos(filterItems, ordersItems) {
   });
 }
 
-function createAlumno(nombres, idColegio, apellidos, rut, correo, contrasena) {
+function createAlumno(nombres, id_colegio, apellidos, rut, correo, contrasena) {
   return new Promise((resolve, reject) => {
     if (
       !nombres &&
-      !idColegio &&
+      !id_colegio &&
       !apellidos &&
       !rut &&
       !correo &&
@@ -61,7 +61,7 @@ function createAlumno(nombres, idColegio, apellidos, rut, correo, contrasena) {
     } else {
       const alumno = {
         nombres,
-        idColegio,
+        id_colegio,
         apellidos,
         rut,
         correo,
@@ -79,7 +79,7 @@ function createAlumno(nombres, idColegio, apellidos, rut, correo, contrasena) {
 function updateAlumno(
   id,
   nombres,
-  idColegio,
+  id_colegio,
   apellidos,
   rut,
   correo,
@@ -89,7 +89,7 @@ function updateAlumno(
     if (
       !id &&
       !nombres &&
-      !idColegio &&
+      !id_colegio &&
       !apellidos &&
       !rut &&
       !correo &&
@@ -100,7 +100,7 @@ function updateAlumno(
       const alumno = {
         id,
         nombres,
-        idColegio,
+        id_colegio,
         apellidos,
         rut,
         correo,

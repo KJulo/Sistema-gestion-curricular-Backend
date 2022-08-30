@@ -40,12 +40,11 @@ router.get("/", (req, res) => {
     });
   }
   controller
-    .getAsistencia(filterItems, orders)
+    .getAsistencias(filterItems, orders)
     .then((asistencia) => {
-      response.success(req, res, asistencia,null, 200);
+      response.success(req, res, asistencia, null, 200);
     })
     .catch((err) => {
-      console.log(err);
       response.error(req, res, "Error inesperado", null, 500, err);
     });
 });
@@ -53,13 +52,13 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   controller
     .createAsistencia(
-      req.body.idCurso,
-      req.body.idAlumno,
+      req.body.id_curso,
+      req.body.id_alumno,
       req.body.asistencia,
       req.body.fecha
     )
     .then((asistenciaCreada) => {
-      if (asistenciaCreada) {
+      if (asistenciaCreada.catchError) {
         response.error(
           req,
           res,
@@ -80,13 +79,13 @@ router.patch("/:id", (req, res) => {
   controller
     .updateAsistencia(
       req.params.id,
-      req.id_curso,
-      req.id_alumno,
-      req.asistencia,
-      req.fecha
+      req.body.id_curso,
+      req.body.id_alumno,
+      req.body.asistencia,
+      req.body.fecha
     )
     .then((asistenciaActualizada) => {
-      if (asistenciaActualizada) {
+      if (asistenciaActualizada.catchError) {
         response.error(
           req,
           res,

@@ -42,10 +42,9 @@ router.get("/", (req, res) => {
   controller
     .getCursos(filterItems, orders)
     .then((cursos) => {
-      response.success(req, res, cursos, null,200);
+      response.success(req, res, cursos, null, 200);
     })
     .catch((err) => {
-      console.log(err);
       response.error(req, res, "Error inesperado", null, 500, err);
     });
 });

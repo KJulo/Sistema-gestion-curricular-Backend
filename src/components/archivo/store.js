@@ -3,7 +3,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function getArchivo(id) {
-  const archivo = await prisma.archivo.findUnique({ where: { id } });
+  const archivo = await prisma.archivo.findUnique({ where: id });
   return archivo;
 }
 

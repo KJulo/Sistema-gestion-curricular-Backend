@@ -36,6 +36,7 @@ model alumno {
   nombres    String
   apellidos  String
   rut        String
+  correo     String
   contrasena String
 
   alumno_curso alumno_curso[]
@@ -56,10 +57,10 @@ model alumno_curso {
 model profesor {
   id         String @id @default(uuid())
   id_colegio String
-  id_alumno  String
   nombres    String
   apellidos  String
   rut        String
+  correo     String
   contrasena String
 
   profesor_curso profesor_curso[]
@@ -91,8 +92,8 @@ model asistencia {
   id_curso   String?
   asistencia String
   fecha      DateTime
-  alumno     alumno?   @relation(fields: [id_alumno], references: [id])
   curso      curso?    @relation(fields: [id_curso], references: [id])
+  alumno     alumno?   @relation(fields: [id_alumno], references: [id])
 }
 
 model nota {

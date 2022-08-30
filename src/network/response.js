@@ -25,6 +25,7 @@ const error = (req, res, message, typeResponse, status, details) => {
     error: message || statusMessage[status],
     data: [],
   };
+  // eslint-disable-next-line no-console
   console.error(`[Response Error] ${details}`);
   res.status(status).send(response);
 };

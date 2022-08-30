@@ -47,19 +47,19 @@ function getAsistencias(filterItems, ordersItems) {
   });
 }
 
-function createAsistencia(idAlumno, idCurso, fecha, hora) {
+function createAsistencia(id_curso, id_alumno, asistencia, fecha) {
   return new Promise((resolve, reject) => {
-    if (!idAlumno && !idCurso && !fecha && !hora) {
+    if (!id_alumno && !id_curso && !asistencia && !fecha) {
       reject(new Error("[Asistencia invalida] Faltan datos"));
     } else {
-      const asistencia = {
-        idAlumno,
-        idCurso,
-        fecha,
-        hora,
+      const asistenciaI = {
+        id_alumno,
+        id_curso,
+        asistencia,
+        fecha: new Date(fecha).toISOString(),
       };
-      if (validator.validateTypeVariablesModel(currentComponent, asistencia)) {
-        resolve(store.createAsistencia(asistencia));
+      if (validator.validateTypeVariablesModel(currentComponent, asistenciaI)) {
+        resolve(store.createAsistencia(asistenciaI));
       } else {
         reject(new Error("[Asistencia invalida] Datos invalidos"));
       }
@@ -67,20 +67,20 @@ function createAsistencia(idAlumno, idCurso, fecha, hora) {
   });
 }
 
-function updateAsistencia(id, idAlumno, idCurso, fecha, hora) {
+function updateAsistencia(id, id_curso, id_alumno, asistencia, fecha) {
   return new Promise((resolve, reject) => {
-    if (!id && !idAlumno && !idCurso && !fecha && !hora) {
+    if (!id && !id_alumno && !id_curso && !asistencia && !fecha) {
       reject(new Error("[Asistencia invalida] Faltan datos"));
     } else {
-      const asistencia = {
+      const asistenciaI = {
         id,
-        idAlumno,
-        idCurso,
-        fecha,
-        hora,
+        id_alumno,
+        id_curso,
+        asistencia,
+        fecha: new Date(fecha).toISOString(),
       };
-      if (validator.validateTypeVariablesModel(currentComponent, asistencia)) {
-        resolve(store.updateAsistencia(asistencia));
+      if (validator.validateTypeVariablesModel(currentComponent, asistenciaI)) {
+        resolve(store.updateAsistencia(asistenciaI));
       } else {
         reject(new Error("[Asistencia invalida] Datos invalidos"));
       }

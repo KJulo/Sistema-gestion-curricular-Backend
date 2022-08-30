@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const config = require("./config");
-const databaseController = require("./database");
+// const databaseController = require("./database");
 const rutes = require("./network/rutes");
 
 const app = express();
@@ -16,6 +16,7 @@ app.use(express.json());
 rutes(app);
 
 app.listen(app.get("port"), () => {
+  // eslint-disable-next-line no-console
   console.log(` Server on Port: ${app.get("port")}`);
   // databaseController.connectToPostgresql();
 });

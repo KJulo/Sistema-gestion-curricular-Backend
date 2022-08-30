@@ -15,9 +15,11 @@ const client = new Client({
 async function connectToPostgresql() {
   try {
     await client.connect();
+    // eslint-disable-next-line no-console
     console.log(" > Postgres connected");
     return true;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(` > Error when trying to connect to Postgres -> ${error}`);
     return false;
   }

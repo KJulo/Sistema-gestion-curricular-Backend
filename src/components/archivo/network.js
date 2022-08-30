@@ -42,17 +42,16 @@ router.get("/", (req, res) => {
   controller
     .getArchivos(filterItems, orders)
     .then((archivos) => {
-      response.success(req, res, archivos,null, 200);
+      response.success(req, res, archivos, null, 200);
     })
     .catch((err) => {
-      console.log(err);
       response.error(req, res, "Error inesperado", null, 500, err);
     });
 });
 
 router.post("/", (req, res) => {
   controller
-    .createArchivo(req.body.idContenido, req.body.nombre, req.body.archivo)
+    .createArchivo(req.body.id_contenido, req.body.nombre, req.body.archivo)
     .then((archivoCreado) => {
       if (archivoCreado.catchError) {
         response.error(

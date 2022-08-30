@@ -49,7 +49,7 @@ function getProfesores(filterItems, ordersItems) {
 
 function createProfesor(
   nombres,
-  idColegio,
+  id_colegio,
   apellidos,
   rut,
   correo,
@@ -58,7 +58,7 @@ function createProfesor(
   return new Promise((resolve, reject) => {
     if (
       !nombres &&
-      !idColegio &&
+      !id_colegio &&
       !apellidos &&
       !rut &&
       !correo &&
@@ -68,7 +68,7 @@ function createProfesor(
     } else {
       const profesor = {
         nombres,
-        idColegio,
+        id_colegio,
         apellidos,
         rut,
         correo,
@@ -86,7 +86,7 @@ function createProfesor(
 function updateProfesor(
   id,
   nombres,
-  idColegio,
+  id_colegio,
   apellidos,
   rut,
   correo,
@@ -96,7 +96,7 @@ function updateProfesor(
     if (
       !id &&
       !nombres &&
-      !idColegio &&
+      !id_colegio &&
       !apellidos &&
       !rut &&
       !correo &&
@@ -107,7 +107,7 @@ function updateProfesor(
       const profesor = {
         id,
         nombres,
-        idColegio,
+        id_colegio,
         apellidos,
         rut,
         correo,

@@ -42,10 +42,9 @@ router.get("/", (req, res) => {
   controller
     .getAlumnos(filterItems, orders)
     .then((alumnos) => {
-      response.success(req, res, alumnos,null, 200);
+      response.success(req, res, alumnos, null, 200);
     })
     .catch((err) => {
-      console.log(err);
       response.error(req, res, "Error inesperado", null, 500, err);
     });
 });
@@ -54,7 +53,7 @@ router.post("/", (req, res) => {
   controller
     .createAlumno(
       req.body.nombres,
-      req.body.idColegio,
+      req.body.id_colegio,
       req.body.apellidos,
       req.body.rut,
       req.body.correo,
@@ -84,7 +83,7 @@ router.patch("/:id", (req, res) => {
     .updateAlumno(
       req.params.id,
       req.body.nombres,
-      req.body.idColegio,
+      req.body.id_colegio,
       req.body.apellidos,
       req.body.rut,
       req.body.correo,
