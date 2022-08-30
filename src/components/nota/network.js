@@ -42,10 +42,9 @@ router.get("/", (req, res) => {
   controller
     .getNotas(filterItems, orders)
     .then((notas) => {
-      response.success(req, res, notas, 200);
+      response.success(req, res, notas, null, 200);
     })
     .catch((err) => {
-      console.log(err);
       response.error(req, res, "Error inesperado", null, 500, err);
     });
 });
@@ -53,8 +52,8 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   controller
     .createNota(
-      req.body.idCurso,
-      req.body.idAlumno,
+      req.body.id_curso,
+      req.body.id_alumno,
       req.body.nombre,
       req.body.nota,
       req.body.descripcion
@@ -82,8 +81,8 @@ router.patch("/:id", (req, res) => {
   controller
     .updateNota(
       req.params.id,
-      req.body.idCurso,
-      req.body.idAlumno,
+      req.body.id_curso,
+      req.body.id_alumno,
       req.body.nombre,
       req.body.nota,
       req.body.descripcion

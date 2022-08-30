@@ -47,13 +47,13 @@ function getContenidos(filterItems, ordersItems) {
   });
 }
 
-function createContenido(idForo, titulo, tipo, descripcion) {
+function createContenido(id_foro, titulo, tipo, descripcion) {
   return new Promise((resolve, reject) => {
-    if (!idForo && !titulo && !tipo && !descripcion) {
+    if (!id_foro && !titulo && !tipo && !descripcion) {
       reject(new Error("[Contenido invalido] Faltan datos"));
     } else {
       const contenido = {
-        idForo,
+        id_foro,
         titulo,
         tipo,
         descripcion,
@@ -67,19 +67,20 @@ function createContenido(idForo, titulo, tipo, descripcion) {
   });
 }
 
-function updateContenido(id, idForo, titulo, tipo, descripcion) {
+function updateContenido(id, id_foro, titulo, tipo, descripcion) {
   return new Promise((resolve, reject) => {
-    if (!id && !idForo && !titulo && !tipo && !descripcion) {
+    if (!id && !id_foro && !titulo && !tipo && !descripcion) {
       reject(new Error("[Contenido invalido] Faltan datos"));
     } else {
       const contenido = {
-        idForo,
+        id,
+        id_foro,
         titulo,
         tipo,
         descripcion,
       };
       if (validator.validateTypeVariablesModel(currentComponent, contenido)) {
-        resolve(store.updateContenido(id, contenido));
+        resolve(store.updateContenido(contenido));
       } else {
         reject(new Error("[Contenido invalido] Datos invalidos"));
       }

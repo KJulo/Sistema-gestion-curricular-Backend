@@ -3,7 +3,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function getProfesor(id) {
-  const profesor = await prisma.profesor.findUnique({ where: { id } });
+  const profesor = await prisma.profesor.findUnique({ where: id });
   return profesor;
 }
 

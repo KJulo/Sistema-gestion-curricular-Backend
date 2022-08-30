@@ -47,15 +47,15 @@ function getArchivos(filterItems, ordersItems) {
   });
 }
 
-function createArchivo(idContenido, nombre, archivoUpload) {
+function createArchivo(id_contenido, nombre, archivoUpload) {
   return new Promise((resolve, reject) => {
-    if (!idContenido && !nombre && !archivoUpload) {
+    if (!id_contenido && !nombre && !archivoUpload) {
       reject(new Error("[Archivo invalido] Faltan datos"));
     } else {
       const archivo = {
-        idContenido,
+        id_contenido,
         nombre,
-        archivoUpload,
+        archivo: archivoUpload,
       };
       if (validator.validateTypeVariablesModel(currentComponent, archivo)) {
         resolve(store.createArchivo(archivo));
@@ -66,18 +66,19 @@ function createArchivo(idContenido, nombre, archivoUpload) {
   });
 }
 
-function updateArchivo(id, idContenido, nombre, archivoUpload) {
+function updateArchivo(id, id_contenido, nombre, archivoUpload) {
   return new Promise((resolve, reject) => {
-    if (!id && !idContenido && !nombre && !archivoUpload) {
+    if (!id && !id_contenido && !nombre && !archivoUpload) {
       reject(new Error("[Archivo invalido] Faltan datos"));
     } else {
       const archivo = {
-        idContenido,
+        id,
+        id_contenido,
         nombre,
-        archivoUpload,
+        archivo: archivoUpload,
       };
       if (validator.validateTypeVariablesModel(currentComponent, archivo)) {
-        resolve(store.updateArchivo(id, archivo));
+        resolve(store.updateArchivo(archivo));
       } else {
         reject(new Error("[Archivo invalido] Error en datos"));
       }

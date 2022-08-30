@@ -42,19 +42,18 @@ router.get("/", (req, res) => {
   controller
     .getProfesores(filterItems, orders)
     .then((profesores) => {
-      response.success(req, res, profesores, 200);
+      response.success(req, res, profesores, null, 200);
     })
     .catch((err) => {
-      console.log(err);
       response.error(req, res, "Error inesperado", null, 500, err);
     });
 });
 
 router.post("/", (req, res) => {
   controller
-    .createAlumno(
+    .createProfesor(
       req.body.nombres,
-      req.body.idColegio,
+      req.body.id_colegio,
       req.body.apellidos,
       req.body.rut,
       req.body.correo,
@@ -81,10 +80,10 @@ router.post("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   controller
-    .updateAlumno(
+    .updateProfesor(
       req.params.id,
       req.body.nombres,
-      req.body.idColegio,
+      req.body.id_colegio,
       req.body.apellidos,
       req.body.rut,
       req.body.correo,
@@ -111,7 +110,7 @@ router.patch("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
   controller
-    .deleteAlumno(req.params.id)
+    .deleteProfesor(req.params.id)
     .then((profesorEliminado) => {
       if (profesorEliminado.catchError) {
         response.error(

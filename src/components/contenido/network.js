@@ -42,10 +42,9 @@ router.get("/", (req, res) => {
   controller
     .getContenidos(filterItems, orders)
     .then((contenidos) => {
-      response.success(req, res, contenidos, 200);
+      response.success(req, res, contenidos, null, 200);
     })
     .catch((err) => {
-      console.log(err);
       response.error(req, res, "Error inesperado", null, 500, err);
     });
 });

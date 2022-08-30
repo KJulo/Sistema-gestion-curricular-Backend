@@ -47,20 +47,20 @@ function getNotas(filterItems, ordersItems) {
   });
 }
 
-function createNota(idCurso, idAlumno, nombre, calificacion, descripcion) {
+function createNota(id_curso, id_alumno, nombre, nota, descripcion) {
   return new Promise((resolve, reject) => {
-    if (!idCurso && !idAlumno && !nombre && !calificacion && !descripcion) {
+    if (!id_curso && !id_alumno && !nombre && !nota && !descripcion) {
       reject(new Error("[Nota invalida] Faltan datos"));
     } else {
-      const nota = {
-        idCurso,
-        idAlumno,
+      const notaI = {
+        id_curso,
+        id_alumno,
         nombre,
-        calificacion,
+        nota,
         descripcion,
       };
       if (validator.validateTypeVariablesModel(currentComponent, nota)) {
-        resolve(store.createNota(nota));
+        resolve(store.createNota(notaI));
       } else {
         reject(new Error("[Nota invalida] Error en datos"));
       }
@@ -68,27 +68,21 @@ function createNota(idCurso, idAlumno, nombre, calificacion, descripcion) {
   });
 }
 
-function updateNota(id, idCurso, idAlumno, nombre, calificacion, descripcion) {
+function updateNota(id, id_curso, id_alumno, nombre, nota, descripcion) {
   return new Promise((resolve, reject) => {
-    if (
-      !id &&
-      !idCurso &&
-      !idAlumno &&
-      !nombre &&
-      !calificacion &&
-      !descripcion
-    ) {
+    if (!id && !id_curso && !id_alumno && !nombre && !nota && !descripcion) {
       reject(new Error("[Nota invalida] Faltan datos"));
     } else {
-      const nota = {
-        idCurso,
-        idAlumno,
+      const notaI = {
+        id,
+        id_curso,
+        id_alumno,
         nombre,
-        calificacion,
+        nota,
         descripcion,
       };
-      if (validator.validateTypeVariablesModel(currentComponent, nota)) {
-        resolve(store.updateNota(nota));
+      if (validator.validateTypeVariablesModel(currentComponent, notaI)) {
+        resolve(store.updateNota(notaI));
       } else {
         reject(new Error("[Nota invalida] Error en datos"));
       }

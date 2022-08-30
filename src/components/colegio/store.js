@@ -3,7 +3,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function getColegio(id) {
-  const colegio = await prisma.colegio.findUnique({ where: { id } });
+  const colegio = await prisma.colegio.findUnique({ where: id });
   return colegio;
 }
 
