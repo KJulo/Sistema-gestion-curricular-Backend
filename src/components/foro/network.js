@@ -51,7 +51,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   controller
-    .createForo(req.body.id_curso, req.body.titulo)
+    .createForo(req.body.id_asignatura, req.body.titulo)
     .then((foroCreado) => {
       if (foroCreado.catchError) {
         response.error(
@@ -73,7 +73,7 @@ router.post("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   controller
-    .updateForo(req.params.id, req.body.id_curso, req.body.titulo)
+    .updateForo(req.params.id, req.body.id_asignatura, req.body.titulo)
     .then((foroActualizado) => {
       if (foroActualizado.catchError) {
         response.error(

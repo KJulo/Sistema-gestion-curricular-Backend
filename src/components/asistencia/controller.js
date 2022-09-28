@@ -47,14 +47,14 @@ function getAsistencias(filterItems, ordersItems) {
   });
 }
 
-function createAsistencia(id_curso, id_alumno, asistencia, fecha) {
+function createAsistencia(id_asignatura, id_alumno, asistencia, fecha) {
   return new Promise((resolve, reject) => {
-    if (!id_alumno && !id_curso && !asistencia && !fecha) {
+    if (!id_alumno && !id_asignatura && !asistencia && !fecha) {
       reject(new Error("[Asistencia invalida] Faltan datos"));
     } else {
       const asistenciaI = {
         id_alumno,
-        id_curso,
+        id_asignatura,
         asistencia,
         fecha: new Date(fecha).toISOString(),
       };
@@ -67,15 +67,15 @@ function createAsistencia(id_curso, id_alumno, asistencia, fecha) {
   });
 }
 
-function updateAsistencia(id, id_curso, id_alumno, asistencia, fecha) {
+function updateAsistencia(id, id_asignatura, id_alumno, asistencia, fecha) {
   return new Promise((resolve, reject) => {
-    if (!id && !id_alumno && !id_curso && !asistencia && !fecha) {
+    if (!id && !id_alumno && !id_asignatura && !asistencia && !fecha) {
       reject(new Error("[Asistencia invalida] Faltan datos"));
     } else {
       const asistenciaI = {
         id,
         id_alumno,
-        id_curso,
+        id_asignatura,
         asistencia,
         fecha: new Date(fecha).toISOString(),
       };

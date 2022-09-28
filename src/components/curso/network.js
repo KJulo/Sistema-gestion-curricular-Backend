@@ -57,10 +57,10 @@ router.post("/", (req, res) => {
         response.error(
           req,
           res,
-          cursoCreado.catchError,
+          "Error inesperado",
           null,
           500,
-          cursoCreado.catchError
+          cursoCreado.meta.cause
         );
       } else {
         response.success(req, res, cursoCreado, null, 201);
