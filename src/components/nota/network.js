@@ -52,7 +52,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   controller
     .createNota(
-      req.body.id_curso,
+      req.body.id_asignatura,
       req.body.id_alumno,
       req.body.nombre,
       req.body.nota,
@@ -81,7 +81,7 @@ router.patch("/:id", (req, res) => {
   controller
     .updateNota(
       req.params.id,
-      req.body.id_curso,
+      req.body.id_asignatura,
       req.body.id_alumno,
       req.body.nombre,
       req.body.nota,

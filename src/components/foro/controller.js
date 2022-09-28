@@ -47,13 +47,13 @@ function getForos(filterItems, ordersItems) {
   });
 }
 
-function createForo(id_curso, titulo) {
+function createForo(id_asignatura, titulo) {
   return new Promise((resolve, reject) => {
-    if (!id_curso && !titulo) {
+    if (!id_asignatura && !titulo) {
       reject(new Error("[Foro invalido] Faltan datos"));
     } else {
       const foro = {
-        id_curso,
+        id_asignatura,
         titulo,
       };
       if (validator.validateTypeVariablesModel(currentComponent, foro)) {
@@ -65,14 +65,14 @@ function createForo(id_curso, titulo) {
   });
 }
 
-function updateForo(id, id_curso, titulo) {
+function updateForo(id, id_asignatura, titulo) {
   return new Promise((resolve, reject) => {
-    if (!id && !id_curso && !titulo) {
+    if (!id && !id_asignatura && !titulo) {
       reject(new Error("[Foro invalido] Faltan datos"));
     } else {
       const foro = {
         id,
-        id_curso,
+        id_asignatura,
         titulo,
       };
       if (validator.validateTypeVariablesModel(currentComponent, foro)) {

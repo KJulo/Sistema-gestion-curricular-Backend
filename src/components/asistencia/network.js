@@ -52,7 +52,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   controller
     .createAsistencia(
-      req.body.id_curso,
+      req.body.id_asignatura,
       req.body.id_alumno,
       req.body.asistencia,
       req.body.fecha
@@ -79,7 +79,7 @@ router.patch("/:id", (req, res) => {
   controller
     .updateAsistencia(
       req.params.id,
-      req.body.id_curso,
+      req.body.id_asignatura,
       req.body.id_alumno,
       req.body.asistencia,
       req.body.fecha

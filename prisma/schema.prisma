@@ -21,28 +21,41 @@ model administrador {
   colegio colegio @relation(fields: [id_colegio], references: [id])
 }
 
+model apoderado {
+  id                 String   @id @default(uuid())
+  nombres            String
+  apellidos          String
+  rut                String
+  contrasena         String
+  telefonoEmergencia String
+  alumno             alumno[]
+}
+
 model colegio {
   id        String @id @default(uuid())
   nombre    String
   direccion String
+  imagen    String?
 
   administrador administrador[]
   alumno        alumno[]
 }
 
 model alumno {
-  id         String @id @default(uuid())
-  id_colegio String
-  nombres    String
-  apellidos  String
-  rut        String
-  correo     String
-  contrasena String
+  id           String @id @default(uuid())
+  id_apoderado String?
+  id_colegio   String
+  nombres      String
+  apellidos    String
+  rut          String
+  correo       String
+  contrasena   String
 
   alumno_curso alumno_curso[]
   asistencia   asistencia[]
   nota         nota[]
   colegio      colegio        @relation(fields: [id_colegio], references: [id])
+  apoderado    apoderado?      @relation(fields: [id_apoderado], references: [id])
 }
 
 model alumno_curso {
@@ -79,40 +92,61 @@ model curso {
   id             String           @id @default(uuid())
   nombre         String
   anho           String
-  nota           nota[]
   profesor_curso profesor_curso[]
-  asistencia     asistencia[]
   alumno_curso   alumno_curso[]
-  foro           foro[]
+  asignatura     asignatura[]
+}
+
+model asignatura {
+  id         String       @id @default(uuid())
+  id_curso   String
+  nombre     String
+  asistencia asistencia[]
+  nota       nota[]
+  foro       foro[]
+  horario    horario[]
+  curso      curso        @relation(fields: [id_curso], references: [id])
+}
+
+model horario {
+  id            String @id @default(uuid())
+  id_asignatura String
+  dia           String
+  horaInicio    String
+  horaTermino   String
+
+  asignatura asignatura @relation(fields: [id_asignatura], references: [id])
 }
 
 model asistencia {
-  id         String   @id @default(uuid())
-  id_alumno  String?
-  id_curso   String?
-  asistencia String
-  fecha      DateTime
-  curso      curso?    @relation(fields: [id_curso], references: [id])
-  alumno     alumno?   @relation(fields: [id_alumno], references: [id])
+  id            String      @id @default(uuid())
+  id_alumno     String?
+  id_asignatura String?
+  asistencia    String
+  fecha         DateTime
+  alumno        alumno?     @relation(fields: [id_alumno], references: [id])
+  asignatura    asignatura? @relation(fields: [id_asignatura], references: [id])
 }
 
 model nota {
-  id          String  @id @default(uuid())
-  id_alumno   String
-  id_curso    String
-  nombre      String
-  nota        String
-  descripcion String
-  curso       curso?  @relation(fields: [id_curso], references: [id])
-  alumno      alumno? @relation(fields: [id_alumno], references: [id])
+  id            String  @id @default(uuid())
+  id_alumno     String
+  id_asignatura String?
+  nombre        String
+  nota          String
+  descripcion   String
+
+  asignatura asignatura? @relation(fields: [id_asignatura], references: [id])
+  alumno     alumno?     @relation(fields: [id_alumno], references: [id])
 }
 
 model foro {
-  id       String @id @default(uuid())
-  id_curso String
-  titulo   String
-  curso     curso       @relation(fields: [id_curso], references: [id])
-  contenido contenido[]
+  id            String      @id @default(uuid())
+  id_asignatura String?
+  tipo          String?
+  titulo        String
+  contenido     contenido[]
+  asignatura    asignatura? @relation(fields: [id_asignatura], references: [id])
 }
 
 model contenido {
