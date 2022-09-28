@@ -1228,6 +1228,61 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Horario",
+			"item": []
+		},
+		{
+			"name": "Asignatura",
+			"item": []
+		},
+		{
+			"name": "Apoderado",
+			"item": [
+				{
+					"name": "Apoderados",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Apoderado",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Apoderado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombres\":\"Ignacio René\",\r\n    \"apellidos\": \"Silva Elorza\",\r\n    \"rut\": \"20358715-5\",\r\n    \"contraseña\": \"1234\",\r\n    \"telefonoEmergencia\": \"+56941205886\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/apoderado",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"apoderado"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
