@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/KJulo/Sistema-gestion-curricular-backend#readme",
   "dependencies": {
-    "@prisma/client": "^4.2.1",
+    "@prisma/client": "^4.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "eslint-config-prettier": "^8.5.0",
@@ -30,10 +30,12 @@
     "prettier": "^2.7.1"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^9.1.6",
     "eslint": "^8.22.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "nodemon": "^2.0.19",
-    "prisma": "^4.2.1"
+    "prisma": "^4.2.1",
+    "prisma-erd-generator": "^1.2.0"
   }
 }
