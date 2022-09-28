@@ -7,9 +7,9 @@ const response = require("../../network/response");
 
 router.get("/:id", (req, res) => {
   controller
-    .getApoderado(req.params)
-    .then((apoderado) => {
-      response.success(req, res, apoderado, null, 200);
+    .getHorario(req.params)
+    .then((horario) => {
+      response.success(req, res, horario, null, 200);
     })
     .catch((err) => {
       response.error(req, res, "Error inesperado", null, 500, err);
@@ -40,9 +40,9 @@ router.get("/", (req, res) => {
     });
   }
   controller
-    .getApoderado(filterItems, orders)
-    .then((apoderado) => {
-      response.success(req, res, apoderado, null, 200);
+    .getHorarios(filterItems, orders)
+    .then((horario) => {
+      response.success(req, res, horario, null, 200);
     })
     .catch((err) => {
       response.error(req, res, "Error inesperado", null, 500, err);
@@ -51,25 +51,24 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   controller
-    .createApoderado(
-      req.body.nombres,
-      req.body.apellidos,
-      req.body.contraseña,
-      req.body.telefono,
-      req.body.telefonoEmergencia
+    .createHorario(
+      req.body.dia,
+      req.body.idAsignatura,
+      req.body.horaInicio,
+      req.body.horaTermino
     )
-    .then((apoderado) => {
-      if (apoderado.catchError) {
+    .then((horarioCreado) => {
+      if (horarioCreado.catchError) {
         response.error(
           req,
           res,
-          "Error inesperado",
+          horarioCreado.catchError,
           null,
           500,
-          apoderado.meta.cause
+          horarioCreado.meta.cause
         );
       } else {
-        response.success(req, res, apoderado, null, 200);
+        response.success(req, res, horarioCreado, null, 201);
       }
     })
     .catch((err) => {
@@ -79,26 +78,25 @@ router.post("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   controller
-    .updateApoderado(
+    .updateCurso(
       req.params.id,
-      req.body.nombres,
-      req.body.apellidos,
-      req.body.contraseña,
-      req.body.telefono,
-      req.body.telefonoEmergencia
+      req.body.dia,
+      req.body.idAsignatura,
+      req.body.horaInicio,
+      req.body.horaTermino
     )
-    .then((apoderadoActualizado) => {
-      if (apoderadoActualizado.catchError) {
+    .then((horarioActualizado) => {
+      if (horarioActualizado.catchError) {
         response.error(
           req,
           res,
           "Error inesperado",
           null,
           500,
-          apoderadoActualizado.meta.cause
+          horarioActualizado.meta.cause
         );
       } else {
-        response.success(req, res, apoderadoActualizado, null, 200);
+        response.success(req, res, horarioActualizado, null, 200);
       }
     })
     .catch((err) => {
@@ -108,19 +106,19 @@ router.patch("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
   controller
-    .deleteApoderado(req.params.id)
-    .then((apoderadoEliminado) => {
-      if (apoderadoEliminado.catchError) {
+    .deleteCurso(req.params.id)
+    .then((horarioEliminado) => {
+      if (horarioEliminado.catchError) {
         response.error(
           req,
           res,
           "Error inesperado",
           null,
           500,
-          apoderadoEliminado.meta.cause
+          horarioEliminado.meta.cause
         );
       } else {
-        response.success(req, res, apoderadoEliminado, null, 200);
+        response.success(req, res, horarioEliminado, null, 200);
       }
     })
     .catch((err) => {

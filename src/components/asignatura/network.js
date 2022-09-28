@@ -7,9 +7,9 @@ const response = require("../../network/response");
 
 router.get("/:id", (req, res) => {
   controller
-    .getApoderado(req.params)
-    .then((apoderado) => {
-      response.success(req, res, apoderado, null, 200);
+    .getAsignatura(req.params)
+    .then((asignatura) => {
+      response.success(req, res, asignatura, null, 200);
     })
     .catch((err) => {
       response.error(req, res, "Error inesperado", null, 500, err);
@@ -40,9 +40,9 @@ router.get("/", (req, res) => {
     });
   }
   controller
-    .getApoderado(filterItems, orders)
-    .then((apoderado) => {
-      response.success(req, res, apoderado, null, 200);
+    .getAsignaturas(filterItems, orders)
+    .then((asignatura) => {
+      response.success(req, res, asignatura, null, 200);
     })
     .catch((err) => {
       response.error(req, res, "Error inesperado", null, 500, err);
@@ -51,26 +51,9 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   controller
-    .createApoderado(
-      req.body.nombres,
-      req.body.apellidos,
-      req.body.contraseña,
-      req.body.telefono,
-      req.body.telefonoEmergencia
-    )
-    .then((apoderado) => {
-      if (apoderado.catchError) {
-        response.error(
-          req,
-          res,
-          "Error inesperado",
-          null,
-          500,
-          apoderado.meta.cause
-        );
-      } else {
-        response.success(req, res, apoderado, null, 200);
-      }
+    .createAsignatura(req.body.id_curso, req.body.nombre)
+    .then((asignaturaCreada) => {
+      response.success(req, res, asignaturaCreada, null, 201);
     })
     .catch((err) => {
       response.error(req, res, "Error inesperado", null, 500, err);
@@ -79,26 +62,19 @@ router.post("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   controller
-    .updateApoderado(
-      req.params.id,
-      req.body.nombres,
-      req.body.apellidos,
-      req.body.contraseña,
-      req.body.telefono,
-      req.body.telefonoEmergencia
-    )
-    .then((apoderadoActualizado) => {
-      if (apoderadoActualizado.catchError) {
+    .updateAsignatura(req.params.id, req.body.nombre)
+    .then((asignaturaActualizada) => {
+      if (asignaturaActualizada.catchError) {
         response.error(
           req,
           res,
           "Error inesperado",
           null,
           500,
-          apoderadoActualizado.meta.cause
+          asignaturaActualizada.meta.cause
         );
       } else {
-        response.success(req, res, apoderadoActualizado, null, 200);
+        response.success(req, res, asignaturaActualizada, null, 200);
       }
     })
     .catch((err) => {
@@ -108,19 +84,19 @@ router.patch("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
   controller
-    .deleteApoderado(req.params.id)
-    .then((apoderadoEliminado) => {
-      if (apoderadoEliminado.catchError) {
+    .deleteAsignatura(req.params.id)
+    .then((asignaturaEliminada) => {
+      if (asignaturaEliminada.catchError) {
         response.error(
           req,
           res,
           "Error inesperado",
           null,
           500,
-          apoderadoEliminado.meta.cause
+          asignaturaEliminada.meta.cause
         );
       } else {
-        response.success(req, res, apoderadoEliminado, null, 200);
+        response.success(req, res, asignaturaEliminada, null, 200);
       }
     })
     .catch((err) => {
