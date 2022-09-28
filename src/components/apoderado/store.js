@@ -17,7 +17,6 @@ async function createApoderado(apoderado) {
     const newApoderado = await prisma.apoderado.create({ data: apoderado });
     return newApoderado;
   } catch (error) {
-    console.log(error);
     if (error.meta.cause) {
       error.meta.cause = `[createApoderado] ${error.meta.cause}`;
     } else {
