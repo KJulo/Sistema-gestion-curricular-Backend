@@ -40,7 +40,7 @@ router.get("/", (req, res) => {
     });
   }
   controller
-    .getApoderado(filterItems, orders)
+    .getApoderados(filterItems, orders)
     .then((apoderado) => {
       response.success(req, res, apoderado, null, 200);
     })
@@ -55,7 +55,7 @@ router.post("/", (req, res) => {
       req.body.nombres,
       req.body.apellidos,
       req.body.contraseña,
-      req.body.telefono,
+      req.body.rut,
       req.body.telefonoEmergencia
     )
     .then((apoderado) => {

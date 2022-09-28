@@ -50,7 +50,7 @@ function createApoderado(
   nombres,
   apellidos,
   contrasena,
-  telefono,
+  rut,
   telefonoEmergencia
 ) {
   return new Promise((resolve, reject) => {
@@ -58,7 +58,7 @@ function createApoderado(
       !nombres &&
       !apellidos &&
       !contrasena &&
-      !telefono &&
+      !rut &&
       !telefonoEmergencia
     ) {
       reject(new Error("[Apoderado invalido] Faltan datos"));
@@ -67,7 +67,7 @@ function createApoderado(
         nombres,
         apellidos,
         contrasena,
-        telefono,
+        rut,
         telefonoEmergencia,
       };
       if (validator.validateTypeVariablesModel(currentComponent, apoderado)) {

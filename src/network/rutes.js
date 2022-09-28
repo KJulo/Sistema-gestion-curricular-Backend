@@ -9,6 +9,9 @@ const curso = require("../components/curso/network");
 const foro = require("../components/foro/network");
 const nota = require("../components/nota/network");
 const profesor = require("../components/profesor/network");
+const apoderado = require("../components/apoderado/network");
+const horario = require("../components/horario/network");
+const asignatura = require("../components/asignatura/network");
 
 // Arreglo de rutas
 const router = (server) => {
@@ -22,6 +25,9 @@ const router = (server) => {
   server.use("/foro", foro);
   server.use("/nota", nota);
   server.use("/profesor", profesor);
+  server.use("/apoderado", apoderado);
+  server.use("/horario", horario);
+  server.use("/asignatura", asignatura);
 };
 
 module.exports = router;

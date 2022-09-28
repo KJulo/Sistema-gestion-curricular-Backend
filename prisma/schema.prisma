@@ -5,10 +5,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator erd {
-  provider = "prisma-erd-generator"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -26,41 +22,40 @@ model administrador {
 }
 
 model apoderado {
-  id                 String @id @default(uuid())
-  id_alumno          String
+  id                 String   @id @default(uuid())
   nombres            String
   apellidos          String
   rut                String
   contrasena         String
   telefonoEmergencia String
-
-  alumno alumno @relation(fields: [id_alumno], references: [id])
+  alumno             alumno[]
 }
 
 model colegio {
   id        String @id @default(uuid())
   nombre    String
   direccion String
-  imagen    String
+  imagen    String?
 
   administrador administrador[]
   alumno        alumno[]
 }
 
 model alumno {
-  id         String @id @default(uuid())
-  id_colegio String
-  nombres    String
-  apellidos  String
-  rut        String
-  correo     String
-  contrasena String
+  id           String @id @default(uuid())
+  id_apoderado String?
+  id_colegio   String
+  nombres      String
+  apellidos    String
+  rut          String
+  correo       String
+  contrasena   String
 
   alumno_curso alumno_curso[]
   asistencia   asistencia[]
   nota         nota[]
   colegio      colegio        @relation(fields: [id_colegio], references: [id])
-  apoderado    apoderado[]
+  apoderado    apoderado?      @relation(fields: [id_apoderado], references: [id])
 }
 
 model alumno_curso {
@@ -148,7 +143,7 @@ model nota {
 model foro {
   id            String      @id @default(uuid())
   id_asignatura String?
-  tipo          String
+  tipo          String?
   titulo        String
   contenido     contenido[]
   asignatura    asignatura? @relation(fields: [id_asignatura], references: [id])
