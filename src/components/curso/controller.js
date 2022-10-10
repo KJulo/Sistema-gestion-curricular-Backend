@@ -13,6 +13,16 @@ function getCurso(id) {
   });
 }
 
+function getCursoProfesor(id) {
+  return new Promise((resolve, reject) => {
+    if (id) {
+      resolve(store.getCursoProfesor(id));
+    } else {
+      reject(new Error("No se ha especificado el id del curso"));
+    }
+  })
+}
+
 function getCursos(filterItems, ordersItems) {
   return new Promise((resolve) => {
     const query = {};
@@ -47,14 +57,15 @@ function getCursos(filterItems, ordersItems) {
   });
 }
 
-function createCurso(nombre, anho) {
+function createCurso(nombre, anho, paralelo) {
   return new Promise((resolve, reject) => {
-    if (!nombre && !anho) {
+    if (!nombre && !anho && !paralelo) {
       reject(new Error("[Curso invalido] Faltan datos"));
     } else {
       const curso = {
         nombre,
         anho,
+        paralelo
       };
       if (validator.validateTypeVariablesModel(currentComponent, curso)) {
         resolve(store.createCurso(curso));
@@ -65,15 +76,16 @@ function createCurso(nombre, anho) {
   });
 }
 
-function updateCurso(id, nombre, anho) {
+function updateCurso(id, nombre, anho, paralelo) {
   return new Promise((resolve, reject) => {
-    if (!id && !nombre && !anho) {
+    if (!id && !nombre && !anho && !paralelo) {	
       reject(new Error("[Curso invalido] Faltan datos"));
     } else {
       const curso = {
         id,
         nombre,
         anho,
+        paralelo
       };
       if (validator.validateTypeVariablesModel(currentComponent, curso)) {
         resolve(store.updateCurso(curso));
@@ -96,6 +108,7 @@ function deleteCurso(id) {
 
 module.exports = {
   getCurso,
+  getCursoProfesor,
   getCursos,
   createCurso,
   updateCurso,

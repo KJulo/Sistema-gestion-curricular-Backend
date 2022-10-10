@@ -32,7 +32,7 @@ model apoderado {
 }
 
 model colegio {
-  id        String @id @default(uuid())
+  id        String  @id @default(uuid())
   nombre    String
   direccion String
   imagen    String?
@@ -42,7 +42,7 @@ model colegio {
 }
 
 model alumno {
-  id           String @id @default(uuid())
+  id           String  @id @default(uuid())
   id_apoderado String?
   id_colegio   String
   nombres      String
@@ -55,7 +55,7 @@ model alumno {
   asistencia   asistencia[]
   nota         nota[]
   colegio      colegio        @relation(fields: [id_colegio], references: [id])
-  apoderado    apoderado?      @relation(fields: [id_apoderado], references: [id])
+  apoderado    apoderado?     @relation(fields: [id_apoderado], references: [id])
 }
 
 model alumno_curso {
@@ -92,6 +92,7 @@ model curso {
   id             String           @id @default(uuid())
   nombre         String
   anho           String
+  paralelo       String
   profesor_curso profesor_curso[]
   alumno_curso   alumno_curso[]
   asignatura     asignatura[]
@@ -129,11 +130,12 @@ model asistencia {
 }
 
 model nota {
-  id            String  @id @default(uuid())
+  id            String   @id @default(uuid())
   id_alumno     String
   id_asignatura String?
   nombre        String
-  nota          String
+  ponderacion   String
+  fecha         DateTime
   descripcion   String
 
   asignatura asignatura? @relation(fields: [id_asignatura], references: [id])

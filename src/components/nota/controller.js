@@ -47,19 +47,20 @@ function getNotas(filterItems, ordersItems) {
   });
 }
 
-function createNota(id_asignatura, id_alumno, nombre, nota, descripcion) {
+function createNota(id_asignatura, id_alumno, nombre, ponderacion, fecha, descripcion) {
   return new Promise((resolve, reject) => {
-    if (!id_asignatura && !id_alumno && !nombre && !nota && !descripcion) {
+    if (!id_asignatura && !id_alumno && !nombre && !ponderacion && !fecha && !descripcion) {
       reject(new Error("[Nota invalida] Faltan datos"));
     } else {
       const notaI = {
         id_asignatura,
         id_alumno,
         nombre,
-        nota,
+        ponderacion,
+        fecha,
         descripcion,
       };
-      if (validator.validateTypeVariablesModel(currentComponent, nota)) {
+      if (validator.validateTypeVariablesModel(currentComponent, notaI)) {
         resolve(store.createNota(notaI));
       } else {
         reject(new Error("[Nota invalida] Error en datos"));
@@ -68,9 +69,9 @@ function createNota(id_asignatura, id_alumno, nombre, nota, descripcion) {
   });
 }
 
-function updateNota(id, id_asignatura, id_alumno, nombre, nota, descripcion) {
+function updateNota(id, id_asignatura, id_alumno, nombre, ponderacion, descripcion) {
   return new Promise((resolve, reject) => {
-    if (!id && !id_asignatura && !id_alumno && !nombre && !nota && !descripcion) {
+    if (!id && !id_asignatura && !id_alumno && !nombre && !ponderacion && !descripcion) {
       reject(new Error("[Nota invalida] Faltan datos"));
     } else {
       const notaI = {
@@ -78,7 +79,7 @@ function updateNota(id, id_asignatura, id_alumno, nombre, nota, descripcion) {
         id_asignatura,
         id_alumno,
         nombre,
-        nota,
+        ponderacion,
         descripcion,
       };
       if (validator.validateTypeVariablesModel(currentComponent, notaI)) {

@@ -16,6 +16,16 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.get("/idProfesor", (req, res) => {
+  controller.getCursoProfesor(req.params)
+    .then((curso) => {
+      response.success(req, res, curso, null, 200);
+    })
+    .catch((err) => { 
+      response.error(req, res, "Error inesperado", null, 500, err);
+    })
+})
+
 router.get("/", (req, res) => {
   const filterItems = {};
   const orders = [];
@@ -51,7 +61,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   controller
-    .createCurso(req.body.nombre, req.body.anho)
+    .createCurso(req.body.nombre, req.body.anho, req.body.paralelo)
     .then((cursoCreado) => {
       if (cursoCreado.catchError) {
         response.error(
@@ -73,7 +83,7 @@ router.post("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   controller
-    .updateCurso(req.params.id, req.body.nombre, req.body.anho)
+    .updateCurso(req.params.id, req.body.nombre, req.body.anho, req.body.paralelo)
     .then((cursoActualizado) => {
       if (cursoActualizado.catchError) {
         response.error(

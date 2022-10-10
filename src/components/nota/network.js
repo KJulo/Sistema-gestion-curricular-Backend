@@ -55,7 +55,8 @@ router.post("/", (req, res) => {
       req.body.id_asignatura,
       req.body.id_alumno,
       req.body.nombre,
-      req.body.nota,
+      req.body.ponderacion,
+      req.body.fecha,
       req.body.descripcion
     )
     .then((notaCreada) => {
@@ -84,7 +85,7 @@ router.patch("/:id", (req, res) => {
       req.body.id_asignatura,
       req.body.id_alumno,
       req.body.nombre,
-      req.body.nota,
+      req.body.ponderacion,
       req.body.descripcion
     )
     .then((notaActualizada) => {
