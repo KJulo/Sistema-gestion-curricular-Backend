@@ -7,13 +7,6 @@ async function getCurso(id) {
   return curso;
 }
 
-async function getCursoProfesor(id) {
-  const cursos = await prisma.profesor_curso.findMany({
-    where: { id_profesor: id },
-  })
-  return cursos
-}
-
 async function getCursos(query) {
   const cursos = await prisma.curso.findMany(query);
   return cursos;
@@ -70,7 +63,6 @@ async function deleteCurso(id) {
 module.exports = {
   getCurso,
   getCursos,
-  getCursoProfesor,
   createCurso,
   updateCurso,
   deleteCurso,

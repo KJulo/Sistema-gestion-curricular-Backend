@@ -16,16 +16,6 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/idProfesor", (req, res) => {
-  controller.getCursoProfesor(req.params)
-    .then((curso) => {
-      response.success(req, res, curso, null, 200);
-    })
-    .catch((err) => { 
-      response.error(req, res, "Error inesperado", null, 500, err);
-    })
-})
-
 router.get("/", (req, res) => {
   const filterItems = {};
   const orders = [];

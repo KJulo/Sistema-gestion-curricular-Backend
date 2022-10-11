@@ -13,16 +13,6 @@ function getCurso(id) {
   });
 }
 
-function getCursoProfesor(id) {
-  return new Promise((resolve, reject) => {
-    if (id) {
-      resolve(store.getCursoProfesor(id));
-    } else {
-      reject(new Error("No se ha especificado el id del curso"));
-    }
-  })
-}
-
 function getCursos(filterItems, ordersItems) {
   return new Promise((resolve) => {
     const query = {};
@@ -108,7 +98,6 @@ function deleteCurso(id) {
 
 module.exports = {
   getCurso,
-  getCursoProfesor,
   getCursos,
   createCurso,
   updateCurso,
