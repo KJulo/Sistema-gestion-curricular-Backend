@@ -35,5 +35,8 @@
     "eslint-plugin-import": "^2.26.0",
     "nodemon": "^2.0.19",
     "prisma": "^4.4.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }
