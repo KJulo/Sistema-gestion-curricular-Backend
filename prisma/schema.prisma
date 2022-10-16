@@ -10,6 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
 model administrador {
   id         String @id @default(uuid())
   id_colegio String
@@ -27,6 +31,7 @@ model apoderado {
   apellidos          String
   rut                String
   contrasena         String
+  correo             String
   telefono           String
   telefonoEmergencia String
   direccion          String
@@ -44,7 +49,7 @@ model colegio {
 }
 
 model alumno {
-  id           String @id @default(uuid())
+  id           String  @id @default(uuid())
   id_apoderado String?
   id_colegio   String
   id_curso     String?
@@ -81,6 +86,17 @@ model curso {
   asignatura       asignatura[]
   alumno           alumno[]
   curso_asignatura curso_asignatura[]
+  notificacion     notificacion[]
+}
+
+model notificacion {
+  id          String   @id @default(uuid())
+  id_curso    String
+  titulo      String
+  descripcion String
+  fecha       DateTime
+
+  curso curso @relation(fields: [id_curso], references: [id])
 }
 
 model curso_asignatura {
