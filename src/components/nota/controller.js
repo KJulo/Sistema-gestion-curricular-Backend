@@ -47,9 +47,23 @@ function getNotas(filterItems, ordersItems) {
   });
 }
 
-function createNota(id_asignatura, id_alumno, nombre, ponderacion, fecha, descripcion) {
+function createNota(
+  id_asignatura,
+  id_alumno,
+  nombre,
+  ponderacion,
+  fecha,
+  descripcion
+) {
   return new Promise((resolve, reject) => {
-    if (!id_asignatura && !id_alumno && !nombre && !ponderacion && !fecha && !descripcion) {
+    if (
+      !id_asignatura &&
+      !id_alumno &&
+      !nombre &&
+      !ponderacion &&
+      !fecha &&
+      !descripcion
+    ) {
       reject(new Error("[Nota invalida] Faltan datos"));
     } else {
       const notaI = {
@@ -69,9 +83,23 @@ function createNota(id_asignatura, id_alumno, nombre, ponderacion, fecha, descri
   });
 }
 
-function updateNota(id, id_asignatura, id_alumno, nombre, ponderacion, descripcion) {
+function updateNota(
+  id,
+  id_asignatura,
+  id_alumno,
+  nombre,
+  ponderacion,
+  descripcion
+) {
   return new Promise((resolve, reject) => {
-    if (!id && !id_asignatura && !id_alumno && !nombre && !ponderacion && !descripcion) {
+    if (
+      !id &&
+      !id_asignatura &&
+      !id_alumno &&
+      !nombre &&
+      !ponderacion &&
+      !descripcion
+    ) {
       reject(new Error("[Nota invalida] Faltan datos"));
     } else {
       const notaI = {

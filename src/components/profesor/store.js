@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 async function getProfesor(id) {
   const profesor = await prisma.profesor.findUnique({
-    where:  id ,
+    where: id,
     include: { curso: true, asignatura: true },
   });
   return profesor;

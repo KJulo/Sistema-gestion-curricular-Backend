@@ -73,7 +73,12 @@ router.post("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   controller
-    .updateCurso(req.params.id, req.body.nombre, req.body.anho, req.body.paralelo)
+    .updateCurso(
+      req.params.id,
+      req.body.nombre,
+      req.body.anho,
+      req.body.paralelo
+    )
     .then((cursoActualizado) => {
       if (cursoActualizado.catchError) {
         response.error(

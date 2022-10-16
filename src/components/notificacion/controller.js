@@ -81,7 +81,9 @@ function updateNotificacion(id, id_curso, titulo, descripcion, fecha) {
         descripcion,
         fecha,
       };
-      if (validator.validateTypeVariablesModel(currentComponent, notificacion)) {
+      if (
+        validator.validateTypeVariablesModel(currentComponent, notificacion)
+      ) {
         resolve(store.updateNotificacion(notificacion));
       } else {
         reject(new Error("[Notificacion invalido] Datos invalidos"));
@@ -97,7 +99,7 @@ function deleteNotificacion(id) {
     } else {
       reject(new Error("No se ha especificado el id de la notificacion"));
     }
-  })
+  });
 }
 
 module.exports = {
@@ -106,4 +108,4 @@ module.exports = {
   createNotificacion,
   updateNotificacion,
   deleteNotificacion,
-}
+};

@@ -55,7 +55,7 @@ function createCurso(nombre, anho, paralelo) {
       const curso = {
         nombre,
         anho,
-        paralelo
+        paralelo,
       };
       if (validator.validateTypeVariablesModel(currentComponent, curso)) {
         resolve(store.createCurso(curso));
@@ -68,14 +68,14 @@ function createCurso(nombre, anho, paralelo) {
 
 function updateCurso(id, nombre, anho, paralelo) {
   return new Promise((resolve, reject) => {
-    if (!id && !nombre && !anho && !paralelo) {	
+    if (!id && !nombre && !anho && !paralelo) {
       reject(new Error("[Curso invalido] Faltan datos"));
     } else {
       const curso = {
         id,
         nombre,
         anho,
-        paralelo
+        paralelo,
       };
       if (validator.validateTypeVariablesModel(currentComponent, curso)) {
         resolve(store.updateCurso(curso));

@@ -39,10 +39,9 @@ async function createTeacher() {
   // TODO: complete createTeacher
 }
 
-async function main() { 
-
+async function main() {
   console.log("\n> 🌱 Start seeding 🌱");
-  
+
   console.log("\n> 🏫 Create School 🏫");
   await createSchool();
 
@@ -52,10 +51,14 @@ async function main() {
   console.log("\n> 📚 Create Course 📚");
   await createCourse();
 
-  console.log("\n> 📙 Create Subject (with forum, content, files and hours) 📙");
+  console.log(
+    "\n> 📙 Create Subject (with forum, content, files and hours) 📙"
+  );
   await createSubject();
 
-  console.log("\n> 🧑‍🎓 Create Student (with greades, asistances and relation with course)");
+  console.log(
+    "\n> 🧑‍🎓 Create Student (with greades, asistances and relation with course)"
+  );
   await createStudent();
 
   console.log("\n> 👨‍👩‍👦 Create Parents (with relation with student) 👨‍👩‍👦");

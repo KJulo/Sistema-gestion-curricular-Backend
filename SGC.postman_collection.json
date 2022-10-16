@@ -1,1288 +1,1061 @@
 {
-	"info": {
-		"_postman_id": "8d820538-6112-4576-aa28-91539833fbff",
-		"name": "SGC",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "18226146"
-	},
-	"item": [
-		{
-			"name": "Administrador",
-			"item": [
-				{
-					"name": "Administradores",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/administrador",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"administrador"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Administrador",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/administrador/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"administrador",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Alumno",
-			"item": [
-				{
-					"name": "Alumnos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/alumno/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"alumno",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Alumno",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/alumno/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"alumno",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Alumno",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombres\": \"Ignacio Rene\",\r\n    \"id_colegio\": \"dcc9c281-0a5e-40c1-b655-464e128b049c\",\r\n    \"apellidos\": \"Silva Elorza\",\r\n    \"rut\": \"20358715-5\",\r\n    \"correo\": \"ignacio.silva.e@gmail.com\",\r\n    \"contrasena\": \"root\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/alumno",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"alumno"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar Alumno",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombres\": \"\",\r\n    \"apellidos\": \"\",\r\n    \"rut\": \"\",\r\n    \"correo\": \"\",\r\n    \"contrasena\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/alumno/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"alumno",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "0361cff0-43c3-4c26-9b5a-ba70868962a5"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Alumno",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/alumno/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"alumno",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "0361cff0-43c3-4c26-9b5a-ba70868962a5"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Archivo",
-			"item": [
-				{
-					"name": "Archivos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/archivo/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"archivo",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Archivo",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/archivo/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"archivo",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1f96b0fd-e4cf-4547-b2cd-5073701179d2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Archivo",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_contenido\":\"b498a99e-753c-4816-aec5-86740dbb5ce8\",\r\n    \"nombre\": \"Algoritmos - repaso\",\r\n    \"archivo\": \"URL\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/archivo",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"archivo"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar Archivo",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"PATCH TEST\",\r\n    \"archivo\": \"URL TEST\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/archivo/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"archivo",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1f96b0fd-e4cf-4547-b2cd-5073701179d2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Archivo",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/archivo/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"archivo",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1f96b0fd-e4cf-4547-b2cd-5073701179d2"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Asistencia",
-			"item": [
-				{
-					"name": "Asistencias",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/asistencia",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"asistencia"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Asistencia",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/asistencia/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"asistencia",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Asistencia",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_curso\": \"adc598ea-ec8d-48ff-b3fb-98951224170f\",\r\n    \"id_alumno\": \"1f3f22e2-d7b6-4e33-92c6-c59116f79e46\",\r\n    \"asistencia\": \"true\",\r\n    \"fecha\": \"2022-11-04\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/asistencia/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"asistencia",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar Asistencia",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"asistencia\": \"false\",\r\n    \"fecha\": \"1970-11-11\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/asistencia/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"asistencia",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "0fa0ccc6-a7e5-4659-b705-bc5d9567438d"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Asistencia",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/asistencia/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"asistencia",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "0fa0ccc6-a7e5-4659-b705-bc5d9567438d"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Colegio",
-			"item": [
-				{
-					"name": "Colegios",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/colegio",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"colegio"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Colegio",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/colegio/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"colegio",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "dcc9c281-0a5e-40c1-b655-464e128b049c"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Colegio",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Colegio ASDF\",\r\n    \"direccion\": \"Av.Frei 3844\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/colegio",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"colegio"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar Colegio",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Colegio ASDF\",\r\n    \"direccion\": \"Av.frei 3844\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/colegio/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"colegio",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "45b72bef-fa72-4986-8eb0-bc5f6f7bb17c"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Colegio",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/colegio/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"colegio",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "45b72bef-fa72-4986-8eb0-bc5f6f7bb17c"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Contenido",
-			"item": [
-				{
-					"name": "Contenidos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/contenido",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"contenido"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Contenido",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/contenido/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"contenido",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear contenido",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_foro\": \"a253263d-5106-4894-b7c5-14dd84d55c4a\",\r\n    \"titulo\": \"Ecuaciones de segundo grado\",\r\n    \"tipo\": \"Document\",\r\n    \"descripcion\": \"Dejo material de estudio para la prueba numero 1\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/contenido/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"contenido",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar Contenido",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Prueba 2\",\r\n    \"tipo\": \"Open\",\r\n    \"descripcion\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/contenido/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"contenido",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "d8f8ea55-f710-4ac4-834b-f03962ec1d82"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Contenido",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/contenido/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"contenido",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "d8f8ea55-f710-4ac4-834b-f03962ec1d82"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Curso",
-			"item": [
-				{
-					"name": "Cursos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/curso",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"curso"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Curso",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/curso/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"curso",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Curso",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Matematicas 8 basico\",\r\n    \"anho\": \"2022\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/curso/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"curso",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar Curso",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Lenguaje 8 basico\",\r\n    \"anho\":\"2022\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/curso/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"curso",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "ba3e21bb-e594-4007-ad45-27729692c232"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Curso",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/curso/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"curso",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "ba3e21bb-e594-4007-ad45-27729692c232"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Foro",
-			"item": [
-				{
-					"name": "Foros",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/foro/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"foro",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Foro",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/foro/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"foro",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "0141adc2-66ac-4140-a2da-5de04189c8ce"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear foro",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_curso\": \"adc598ea-ec8d-48ff-b3fb-98951224170f\",\r\n    \"titulo\": \"Modulo 1\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/foro/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"foro",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar Foro",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"foro\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/foro/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"foro",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "0141adc2-66ac-4140-a2da-5de04189c8ce"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Foro",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/foro/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"foro",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "0141adc2-66ac-4140-a2da-5de04189c8ce"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Nota",
-			"item": [
-				{
-					"name": "Notas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/nota",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"nota"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Nota",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/nota/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"nota",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Nota",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_curso\": \"adc598ea-ec8d-48ff-b3fb-98951224170f\",\r\n    \"id_alumno\": \"1f3f22e2-d7b6-4e33-92c6-c59116f79e46\",\r\n    \"nombre\": \"Prueba 1\",\r\n    \"nota\": \"40\",\r\n    \"descripcion\": \"Prueba sobre algoritmos\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/nota",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"nota"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar Nota",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_curso\": \"adc598ea-ec8d-48ff-b3fb-98951224170f\",\r\n    \"id_alumno\": \"1f3f22e2-d7b6-4e33-92c6-c59116f79e46\",\r\n    \"nombre\": \"Testing patch\",\r\n    \"nota\": \"10\",\r\n    \"descripcion\": \"Testeo de la nota\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/nota/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"nota",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "14fa17ae-6300-480b-a180-e347777f0ddb"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Nota",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/nota/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"nota",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "14fa17ae-6300-480b-a180-e347777f0ddb"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Profesor",
-			"item": [
-				{
-					"name": "Profesores",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/profesor",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"profesor"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Profesor",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/profesor/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"profesor",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Profesor",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombres\": \"Ignacio Rene\",\r\n    \"id_colegio\": \"dcc9c281-0a5e-40c1-b655-464e128b049c\",\r\n    \"apellidos\": \"Silva Elorza\",\r\n    \"rut\": \"20358715-5\",\r\n    \"correo\": \"ignacio.silva.e@gmail.com\",\r\n    \"contrasena\": \"root\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/profesor",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"profesor"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar Profesor",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombres\": \"\",\r\n    \"apellidos\": \"\",\r\n    \"rut\": \"\",\r\n    \"correo\": \"\",\r\n    \"contrasena\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/profesor/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"profesor",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "e2276f43-8e65-4c44-8cae-f9f5fcca88c6"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Profesor",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/profesor/:id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"profesor",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "e2276f43-8e65-4c44-8cae-f9f5fcca88c6"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Horario",
-			"item": []
-		},
-		{
-			"name": "Asignatura",
-			"item": []
-		},
-		{
-			"name": "Apoderado",
-			"item": [
-				{
-					"name": "Apoderados",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Apoderado",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Apoderado",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombres\":\"Ignacio René\",\r\n    \"apellidos\": \"Silva Elorza\",\r\n    \"rut\": \"20358715-5\",\r\n    \"contraseña\": \"1234\",\r\n    \"telefonoEmergencia\": \"+56941205886\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/apoderado",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"apoderado"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "8d820538-6112-4576-aa28-91539833fbff",
+    "name": "SGC",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "18226146"
+  },
+  "item": [
+    {
+      "name": "Administrador",
+      "item": [
+        {
+          "name": "Administradores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/administrador",
+              "host": ["{{url}}"],
+              "path": ["administrador"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Administrador",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/administrador/:id",
+              "host": ["{{url}}"],
+              "path": ["administrador", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Alumno",
+      "item": [
+        {
+          "name": "Alumnos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/alumno/",
+              "host": ["{{url}}"],
+              "path": ["alumno", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Alumno",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/alumno/:id",
+              "host": ["{{url}}"],
+              "path": ["alumno", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Alumno",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombres\": \"Ignacio Rene\",\r\n    \"id_colegio\": \"dcc9c281-0a5e-40c1-b655-464e128b049c\",\r\n    \"apellidos\": \"Silva Elorza\",\r\n    \"rut\": \"20358715-5\",\r\n    \"correo\": \"ignacio.silva.e@gmail.com\",\r\n    \"contrasena\": \"root\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/alumno",
+              "host": ["{{url}}"],
+              "path": ["alumno"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Alumno",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombres\": \"\",\r\n    \"apellidos\": \"\",\r\n    \"rut\": \"\",\r\n    \"correo\": \"\",\r\n    \"contrasena\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/alumno/:id",
+              "host": ["{{url}}"],
+              "path": ["alumno", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "0361cff0-43c3-4c26-9b5a-ba70868962a5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Alumno",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/alumno/:id",
+              "host": ["{{url}}"],
+              "path": ["alumno", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "0361cff0-43c3-4c26-9b5a-ba70868962a5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Archivo",
+      "item": [
+        {
+          "name": "Archivos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/archivo/",
+              "host": ["{{url}}"],
+              "path": ["archivo", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Archivo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/archivo/:id",
+              "host": ["{{url}}"],
+              "path": ["archivo", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1f96b0fd-e4cf-4547-b2cd-5073701179d2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Archivo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_contenido\":\"b498a99e-753c-4816-aec5-86740dbb5ce8\",\r\n    \"nombre\": \"Algoritmos - repaso\",\r\n    \"archivo\": \"URL\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/archivo",
+              "host": ["{{url}}"],
+              "path": ["archivo"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Archivo",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"PATCH TEST\",\r\n    \"archivo\": \"URL TEST\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/archivo/:id",
+              "host": ["{{url}}"],
+              "path": ["archivo", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1f96b0fd-e4cf-4547-b2cd-5073701179d2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Archivo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/archivo/:id",
+              "host": ["{{url}}"],
+              "path": ["archivo", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1f96b0fd-e4cf-4547-b2cd-5073701179d2"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Asistencia",
+      "item": [
+        {
+          "name": "Asistencias",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/asistencia",
+              "host": ["{{url}}"],
+              "path": ["asistencia"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Asistencia",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/asistencia/:id",
+              "host": ["{{url}}"],
+              "path": ["asistencia", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Asistencia",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_curso\": \"adc598ea-ec8d-48ff-b3fb-98951224170f\",\r\n    \"id_alumno\": \"1f3f22e2-d7b6-4e33-92c6-c59116f79e46\",\r\n    \"asistencia\": \"true\",\r\n    \"fecha\": \"2022-11-04\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/asistencia/",
+              "host": ["{{url}}"],
+              "path": ["asistencia", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Asistencia",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"asistencia\": \"false\",\r\n    \"fecha\": \"1970-11-11\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/asistencia/:id",
+              "host": ["{{url}}"],
+              "path": ["asistencia", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "0fa0ccc6-a7e5-4659-b705-bc5d9567438d"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Asistencia",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/asistencia/:id",
+              "host": ["{{url}}"],
+              "path": ["asistencia", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "0fa0ccc6-a7e5-4659-b705-bc5d9567438d"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Colegio",
+      "item": [
+        {
+          "name": "Colegios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/colegio",
+              "host": ["{{url}}"],
+              "path": ["colegio"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Colegio",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/colegio/:id",
+              "host": ["{{url}}"],
+              "path": ["colegio", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "dcc9c281-0a5e-40c1-b655-464e128b049c"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Colegio",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Colegio ASDF\",\r\n    \"direccion\": \"Av.Frei 3844\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/colegio",
+              "host": ["{{url}}"],
+              "path": ["colegio"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Colegio",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Colegio ASDF\",\r\n    \"direccion\": \"Av.frei 3844\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/colegio/:id",
+              "host": ["{{url}}"],
+              "path": ["colegio", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "45b72bef-fa72-4986-8eb0-bc5f6f7bb17c"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Colegio",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/colegio/:id",
+              "host": ["{{url}}"],
+              "path": ["colegio", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "45b72bef-fa72-4986-8eb0-bc5f6f7bb17c"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Contenido",
+      "item": [
+        {
+          "name": "Contenidos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/contenido",
+              "host": ["{{url}}"],
+              "path": ["contenido"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Contenido",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/contenido/:id",
+              "host": ["{{url}}"],
+              "path": ["contenido", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear contenido",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_foro\": \"a253263d-5106-4894-b7c5-14dd84d55c4a\",\r\n    \"titulo\": \"Ecuaciones de segundo grado\",\r\n    \"tipo\": \"Document\",\r\n    \"descripcion\": \"Dejo material de estudio para la prueba numero 1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/contenido/",
+              "host": ["{{url}}"],
+              "path": ["contenido", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Contenido",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"titulo\": \"Prueba 2\",\r\n    \"tipo\": \"Open\",\r\n    \"descripcion\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/contenido/:id",
+              "host": ["{{url}}"],
+              "path": ["contenido", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "d8f8ea55-f710-4ac4-834b-f03962ec1d82"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Contenido",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/contenido/:id",
+              "host": ["{{url}}"],
+              "path": ["contenido", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "d8f8ea55-f710-4ac4-834b-f03962ec1d82"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Curso",
+      "item": [
+        {
+          "name": "Cursos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/curso",
+              "host": ["{{url}}"],
+              "path": ["curso"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Curso",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/curso/:id",
+              "host": ["{{url}}"],
+              "path": ["curso", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Curso",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Matematicas 8 basico\",\r\n    \"anho\": \"2022\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/curso/",
+              "host": ["{{url}}"],
+              "path": ["curso", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Curso",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\":\"Lenguaje 8 basico\",\r\n    \"anho\":\"2022\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/curso/:id",
+              "host": ["{{url}}"],
+              "path": ["curso", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ba3e21bb-e594-4007-ad45-27729692c232"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Curso",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/curso/:id",
+              "host": ["{{url}}"],
+              "path": ["curso", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ba3e21bb-e594-4007-ad45-27729692c232"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Foro",
+      "item": [
+        {
+          "name": "Foros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/foro/",
+              "host": ["{{url}}"],
+              "path": ["foro", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Foro",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/foro/:id",
+              "host": ["{{url}}"],
+              "path": ["foro", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "0141adc2-66ac-4140-a2da-5de04189c8ce"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear foro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_curso\": \"adc598ea-ec8d-48ff-b3fb-98951224170f\",\r\n    \"titulo\": \"Modulo 1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/foro/",
+              "host": ["{{url}}"],
+              "path": ["foro", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Foro",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"titulo\": \"foro\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/foro/:id",
+              "host": ["{{url}}"],
+              "path": ["foro", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "0141adc2-66ac-4140-a2da-5de04189c8ce"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Foro",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/foro/:id",
+              "host": ["{{url}}"],
+              "path": ["foro", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "0141adc2-66ac-4140-a2da-5de04189c8ce"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Nota",
+      "item": [
+        {
+          "name": "Notas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/nota",
+              "host": ["{{url}}"],
+              "path": ["nota"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Nota",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/nota/:id",
+              "host": ["{{url}}"],
+              "path": ["nota", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Nota",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_curso\": \"adc598ea-ec8d-48ff-b3fb-98951224170f\",\r\n    \"id_alumno\": \"1f3f22e2-d7b6-4e33-92c6-c59116f79e46\",\r\n    \"nombre\": \"Prueba 1\",\r\n    \"nota\": \"40\",\r\n    \"descripcion\": \"Prueba sobre algoritmos\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/nota",
+              "host": ["{{url}}"],
+              "path": ["nota"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Nota",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_curso\": \"adc598ea-ec8d-48ff-b3fb-98951224170f\",\r\n    \"id_alumno\": \"1f3f22e2-d7b6-4e33-92c6-c59116f79e46\",\r\n    \"nombre\": \"Testing patch\",\r\n    \"nota\": \"10\",\r\n    \"descripcion\": \"Testeo de la nota\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/nota/:id",
+              "host": ["{{url}}"],
+              "path": ["nota", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "14fa17ae-6300-480b-a180-e347777f0ddb"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Nota",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/nota/:id",
+              "host": ["{{url}}"],
+              "path": ["nota", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "14fa17ae-6300-480b-a180-e347777f0ddb"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Profesor",
+      "item": [
+        {
+          "name": "Profesores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/profesor",
+              "host": ["{{url}}"],
+              "path": ["profesor"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Profesor",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/profesor/:id",
+              "host": ["{{url}}"],
+              "path": ["profesor", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Profesor",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombres\": \"Ignacio Rene\",\r\n    \"id_colegio\": \"dcc9c281-0a5e-40c1-b655-464e128b049c\",\r\n    \"apellidos\": \"Silva Elorza\",\r\n    \"rut\": \"20358715-5\",\r\n    \"correo\": \"ignacio.silva.e@gmail.com\",\r\n    \"contrasena\": \"root\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/profesor",
+              "host": ["{{url}}"],
+              "path": ["profesor"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Profesor",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombres\": \"\",\r\n    \"apellidos\": \"\",\r\n    \"rut\": \"\",\r\n    \"correo\": \"\",\r\n    \"contrasena\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/profesor/:id",
+              "host": ["{{url}}"],
+              "path": ["profesor", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "e2276f43-8e65-4c44-8cae-f9f5fcca88c6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Profesor",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/profesor/:id",
+              "host": ["{{url}}"],
+              "path": ["profesor", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "e2276f43-8e65-4c44-8cae-f9f5fcca88c6"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Horario",
+      "item": []
+    },
+    {
+      "name": "Asignatura",
+      "item": []
+    },
+    {
+      "name": "Apoderado",
+      "item": [
+        {
+          "name": "Apoderados",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Apoderado",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Apoderado",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombres\":\"Ignacio René\",\r\n    \"apellidos\": \"Silva Elorza\",\r\n    \"rut\": \"20358715-5\",\r\n    \"contraseña\": \"1234\",\r\n    \"telefonoEmergencia\": \"+56941205886\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/apoderado",
+              "host": ["{{url}}"],
+              "path": ["apoderado"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }

@@ -12,8 +12,6 @@ async function getCursos(query) {
   return cursos;
 }
 
-
-
 async function createCurso(curso) {
   try {
     const newCurso = await prisma.curso.create({ data: curso });
