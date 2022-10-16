@@ -2,11 +2,13 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-async function getAlumno({id}) {
-  const alumno = await prisma.alumno.findUnique({ where: { "id": id } });
-  const cursos = await prisma.curso.findMany({ where: { alumno_curso: { some: { id_alumno: id } } } });
-
-  return { ...alumno, cursos };
+async function getAlumno(id) {
+  const alumno = await prisma.alumno.findUnique({ where: id, include: { curso: true } });
+  if (alumno.curso){
+    const asignaturas = await prisma.asignatura.findMany({ where: { curso: { id: alumno.curso.id } } })
+    return {...alumno, curso: {...alumno.curso, asignaturas}}
+  }
+  return alumno;
 }
 
 async function getAlumnos(query) {

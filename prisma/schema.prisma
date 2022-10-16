@@ -75,6 +75,7 @@ model profesor {
   correo     String
   contrasena String
   asignatura asignatura[]
+  curso      curso[]
 }
 
 model curso {
@@ -87,6 +88,7 @@ model curso {
   alumno           alumno[]
   curso_asignatura curso_asignatura[]
   notificacion     notificacion[]
+  profesor         profesor?          @relation(fields: [id_profesor], references: [id])
 }
 
 model notificacion {
