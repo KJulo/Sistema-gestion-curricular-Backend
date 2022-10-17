@@ -51,7 +51,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   controller
-    .createCurso(req.body.nombre, req.body.anho)
+    .createCurso(req.body.nombre, req.body.anho, req.body.paralelo)
     .then((cursoCreado) => {
       if (cursoCreado.catchError) {
         response.error(
@@ -73,7 +73,12 @@ router.post("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   controller
-    .updateCurso(req.params.id, req.body.nombre, req.body.anho)
+    .updateCurso(
+      req.params.id,
+      req.body.nombre,
+      req.body.anho,
+      req.body.paralelo
+    )
     .then((cursoActualizado) => {
       if (cursoActualizado.catchError) {
         response.error(

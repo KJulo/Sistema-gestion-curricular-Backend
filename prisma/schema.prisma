@@ -10,6 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
 model administrador {
   id         String @id @default(uuid())
   id_colegio String
@@ -27,12 +31,15 @@ model apoderado {
   apellidos          String
   rut                String
   contrasena         String
+  correo             String
+  telefono           String
   telefonoEmergencia String
+  direccion          String
   alumno             alumno[]
 }
 
 model colegio {
-  id        String @id @default(uuid())
+  id        String  @id @default(uuid())
   nombre    String
   direccion String
   imagen    String?
@@ -42,70 +49,80 @@ model colegio {
 }
 
 model alumno {
-  id           String @id @default(uuid())
+  id           String  @id @default(uuid())
   id_apoderado String?
   id_colegio   String
+  id_curso     String?
   nombres      String
   apellidos    String
   rut          String
   correo       String
   contrasena   String
 
-  alumno_curso alumno_curso[]
-  asistencia   asistencia[]
-  nota         nota[]
-  colegio      colegio        @relation(fields: [id_colegio], references: [id])
-  apoderado    apoderado?      @relation(fields: [id_apoderado], references: [id])
-}
-
-model alumno_curso {
-  id        String @id @default(uuid())
-  id_curso  String
-  id_alumno String
-
-  alumno alumno @relation(fields: [id_alumno], references: [id])
-  curso  curso  @relation(fields: [id_curso], references: [id])
+  asistencia asistencia[]
+  nota       nota[]
+  curso      curso?       @relation(fields: [id_curso], references: [id])
+  apoderado  apoderado?   @relation(fields: [id_apoderado], references: [id])
+  colegio    colegio      @relation(fields: [id_colegio], references: [id])
 }
 
 model profesor {
-  id         String @id @default(uuid())
+  id         String       @id @default(uuid())
   id_colegio String
   nombres    String
   apellidos  String
   rut        String
   correo     String
   contrasena String
-
-  profesor_curso profesor_curso[]
-}
-
-model profesor_curso {
-  id          String @id @default(uuid())
-  id_curso    String
-  id_profesor String
-
-  curso    curso    @relation(fields: [id_curso], references: [id])
-  profesor profesor @relation(fields: [id_profesor], references: [id])
+  asignatura asignatura[]
+  curso      curso[]
 }
 
 model curso {
-  id             String           @id @default(uuid())
-  nombre         String
-  anho           String
-  profesor_curso profesor_curso[]
-  alumno_curso   alumno_curso[]
-  asignatura     asignatura[]
+  id               String             @id @default(uuid())
+  nombre           String
+  anho             String
+  paralelo         String
+  id_profesor      String?
+  asignatura       asignatura[]
+  alumno           alumno[]
+  curso_asignatura curso_asignatura[]
+  notificacion     notificacion[]
+  profesor         profesor?          @relation(fields: [id_profesor], references: [id])
+}
+
+model notificacion {
+  id          String   @id @default(uuid())
+  id_curso    String
+  titulo      String
+  descripcion String
+  fecha       DateTime
+
+  curso curso @relation(fields: [id_curso], references: [id])
+}
+
+model curso_asignatura {
+  id            String @id @default(uuid())
+  id_curso      String
+  id_asignatura String
+
+  curso      curso      @relation(fields: [id_curso], references: [id])
+  asignatura asignatura @relation(fields: [id_asignatura], references: [id])
 }
 
 model asignatura {
-  id         String       @id @default(uuid())
-  id_curso   String
-  nombre     String
-  asistencia asistencia[]
-  nota       nota[]
-  foro       foro[]
-  horario    horario[]
-  curso      curso        @relation(fields: [id_curso], references: [id])
+  id          String       @id @default(uuid())
+  id_curso    String
+  id_profesor String
+  nombre      String
+  asistencia  asistencia[]
+  nota        nota[]
+  foro        foro[]
+  horario     horario[]
+  curso       curso        @relation(fields: [id_curso], references: [id])
+
+  profesor         profesor           @relation(fields: [id_profesor], references: [id])
+  curso_asignatura curso_asignatura[]
 }
 
 model horario {
@@ -129,11 +146,12 @@ model asistencia {
 }
 
 model nota {
-  id            String  @id @default(uuid())
+  id            String   @id @default(uuid())
   id_alumno     String
   id_asignatura String?
   nombre        String
-  nota          String
+  ponderacion   String
+  fecha         DateTime
   descripcion   String
 
   asignatura asignatura? @relation(fields: [id_asignatura], references: [id])

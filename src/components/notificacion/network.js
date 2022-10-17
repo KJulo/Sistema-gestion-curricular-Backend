@@ -7,9 +7,9 @@ const response = require("../../network/response");
 
 router.get("/:id", (req, res) => {
   controller
-    .getNota(req.params)
-    .then((nota) => {
-      response.success(req, res, nota, null, 200);
+    .getNotificacion(req.params)
+    .then((notificacion) => {
+      response.success(req, res, notificacion, null, 200);
     })
     .catch((err) => {
       response.error(req, res, "Error inesperado", null, 500, err);
@@ -40,9 +40,9 @@ router.get("/", (req, res) => {
     });
   }
   controller
-    .getNotas(filterItems, orders)
-    .then((notas) => {
-      response.success(req, res, notas, null, 200);
+    .getNotificaciones(filterItems, orders)
+    .then((notificaciones) => {
+      response.success(req, res, notificaciones, null, 200);
     })
     .catch((err) => {
       response.error(req, res, "Error inesperado", null, 500, err);
@@ -51,26 +51,24 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   controller
-    .createNota(
-      req.body.id_asignatura,
-      req.body.id_alumno,
-      req.body.nombre,
-      req.body.ponderacion,
-      req.body.fecha,
-      req.body.descripcion
+    .createNotificacion(
+      req.body.id_curso,
+      req.body.titulo,
+      req.body.descripcion,
+      req.body.fecha
     )
-    .then((notaCreada) => {
-      if (notaCreada.catchError) {
+    .then((notificacionCreada) => {
+      if (notificacionCreada.catchError) {
         response.error(
           req,
           res,
-          "Error inesperado",
+          notificacionCreada.message,
           null,
           500,
-          notaCreada.meta.cause
+          notificacionCreada.error
         );
       } else {
-        response.success(req, res, notaCreada, null, 201);
+        response.success(req, res, notificacionCreada, null, 201);
       }
     })
     .catch((err) => {
@@ -80,48 +78,25 @@ router.post("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   controller
-    .updateNota(
+    .updateNotificacion(
       req.params.id,
-      req.body.id_asignatura,
-      req.body.id_alumno,
-      req.body.nombre,
-      req.body.ponderacion,
-      req.body.descripcion
+      req.body.id_curso,
+      req.body.titulo,
+      req.body.descripcion,
+      req.body.fecha
     )
-    .then((notaActualizada) => {
-      if (notaActualizada.catchError) {
+    .then((notificacionActualizada) => {
+      if (notificacionActualizada.catchError) {
         response.error(
           req,
           res,
-          "Error inesperado",
+          notificacionActualizada.message,
           null,
           500,
-          notaActualizada.meta.cause
+          notificacionActualizada.error
         );
       } else {
-        response.success(req, res, notaActualizada, null, 200);
-      }
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
-
-router.delete("/:id", (req, res) => {
-  controller
-    .deleteNota(req.params.id)
-    .then((notaEliminada) => {
-      if (notaEliminada.catchError) {
-        response.error(
-          req,
-          res,
-          "Error inesperado",
-          null,
-          500,
-          notaEliminada.meta.cause
-        );
-      } else {
-        response.success(req, res, notaEliminada, null, 200);
+        response.success(req, res, notificacionActualizada, null, 200);
       }
     })
     .catch((err) => {

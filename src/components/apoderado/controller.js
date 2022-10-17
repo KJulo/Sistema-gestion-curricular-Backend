@@ -54,13 +54,7 @@ function createApoderado(
   telefonoEmergencia
 ) {
   return new Promise((resolve, reject) => {
-    if (
-      !nombres &&
-      !apellidos &&
-      !contrasena &&
-      !rut &&
-      !telefonoEmergencia
-    ) {
+    if (!nombres && !apellidos && !contrasena && !rut && !telefonoEmergencia) {
       reject(new Error("[Apoderado invalido] Faltan datos"));
     } else {
       const apoderado = {

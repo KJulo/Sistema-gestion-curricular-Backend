@@ -3,7 +3,10 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function getApoderado(id) {
-  const apoderado = await prisma.apoderado.findUnique({ where: id });
+  const apoderado = await prisma.apoderado.findUnique({
+    where: id,
+    include: { alumno: true },
+  });
   return apoderado;
 }
 
@@ -63,5 +66,5 @@ module.exports = {
   getApoderados,
   createApoderado,
   updateApoderado,
-  deleteApoderado
+  deleteApoderado,
 };

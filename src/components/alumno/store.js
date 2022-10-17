@@ -3,7 +3,16 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function getAlumno(id) {
-  const alumno = await prisma.alumno.findUnique({ where: id });
+  const alumno = await prisma.alumno.findUnique({
+    where: id,
+    include: { curso: true },
+  });
+  if (alumno.curso) {
+    const asignaturas = await prisma.asignatura.findMany({
+      where: { curso: { id: alumno.curso.id } },
+    });
+    return { ...alumno, curso: { ...alumno.curso, asignaturas } };
+  }
   return alumno;
 }
 
