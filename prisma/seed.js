@@ -5,7 +5,8 @@ const prisma = new PrismaClient();
 
 const showData = true;
 
-// const typeEnv = "Dev";
+// datas
+// const school = require("./data/school");
 
 async function printData() {
   // TODO: complete console log querys
