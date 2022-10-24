@@ -33,7 +33,7 @@ model apoderado {
   contrasena         String
   correo             String
   telefono           String
-  telefonoEmergencia String
+  telefonoEmergencia String? @default("")
   direccion          String
   alumno             alumno[]
 }

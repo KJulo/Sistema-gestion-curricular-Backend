@@ -54,8 +54,11 @@ router.post("/", (req, res) => {
     .createApoderado(
       req.body.nombres,
       req.body.apellidos,
-      req.body.contraseña,
+      req.body.contrasena,
       req.body.rut,
+      req.body.correo,
+      req.body.direccion,
+      req.body.telefono,
       req.body.telefonoEmergencia
     )
     .then((apoderado) => {
