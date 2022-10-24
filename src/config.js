@@ -1,5 +1,5 @@
 const config = {
-  port: process.env.PORT || 8080,
+  port: process.env.PORT || 8081,
   host: process.env.HOST || "http://localhost",
   appRoute: process.env.APP_ROUTE || "/app",
   publicRoute: process.env.PUBLIC_ROUTE || "/public",
