@@ -54,7 +54,7 @@ function createAsistencia(id_asignatura, id_alumno, asistencia, fecha) {
     } else {
       const asistenciaI = {
         asistencia,
-        fecha: new Date(fecha),
+        fecha: new Date(fecha).toISOString(),
         alumno: {
           connect: { id: id_alumno },
         },
