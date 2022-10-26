@@ -53,10 +53,14 @@ function createAsistencia(id_asignatura, id_alumno, asistencia, fecha) {
       reject(new Error("[Asistencia invalida] Faltan datos"));
     } else {
       const asistenciaI = {
-        id_alumno,
-        id_asignatura,
         asistencia,
-        fecha: new Date(fecha).toISOString(),
+        fecha: new Date(fecha),
+        alumno: {
+          connect: { id: id_alumno },
+        },
+        asignatura: {
+          connect: { id: id_asignatura },
+        },
       };
       if (validator.validateTypeVariablesModel(currentComponent, asistenciaI)) {
         resolve(store.createAsistencia(asistenciaI));
