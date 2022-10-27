@@ -61,7 +61,7 @@ model alumno {
 
   asistencia asistencia[]
   nota       nota[]
-  curso      curso?       @relation(fields: [id_curso], references: [id])
+  curso      curso?      @relation(fields: [id_curso], references: [id], onDelete: SetNull, onUpdate: Cascade)
   apoderado  apoderado?   @relation(fields: [id_apoderado], references: [id])
   colegio    colegio      @relation(fields: [id_colegio], references: [id])
 }
@@ -98,7 +98,7 @@ model notificacion {
   descripcion String
   fecha       DateTime
 
-  curso curso @relation(fields: [id_curso], references: [id])
+  curso curso @relation(fields: [id_curso], references: [id], onDelete: Cascade)
 }
 
 model curso_asignatura {
@@ -106,20 +106,20 @@ model curso_asignatura {
   id_curso      String
   id_asignatura String
 
-  curso      curso      @relation(fields: [id_curso], references: [id])
-  asignatura asignatura @relation(fields: [id_asignatura], references: [id])
+  curso      curso      @relation(fields: [id_curso], references: [id], onDelete: Cascade)
+  asignatura asignatura @relation(fields: [id_asignatura], references: [id], onDelete: Cascade)
 }
 
 model asignatura {
   id          String       @id @default(uuid())
-  id_curso    String
+  id_curso    String?
   id_profesor String
   nombre      String
   asistencia  asistencia[]
   nota        nota[]
   foro        foro[]
   horario     horario[]
-  curso       curso        @relation(fields: [id_curso], references: [id])
+  curso       curso?        @relation(fields: [id_curso], references: [id], onDelete: SetNull)
 
   profesor         profesor           @relation(fields: [id_profesor], references: [id])
   curso_asignatura curso_asignatura[]

@@ -79,8 +79,9 @@ function createAlumno(nombres, id_colegio, apellidos, rut, correo, contrasena) {
 function updateAlumno(
   id,
   nombres,
-  id_colegio,
   apellidos,
+  id_colegio,
+  id_curso,
   rut,
   correo,
   contrasena
@@ -89,8 +90,9 @@ function updateAlumno(
     if (
       !id &&
       !nombres &&
-      !id_colegio &&
       !apellidos &&
+      !id_colegio &&
+      !id_curso &&
       !rut &&
       !correo &&
       !contrasena
@@ -100,8 +102,9 @@ function updateAlumno(
       const alumno = {
         id,
         nombres,
-        id_colegio,
         apellidos,
+        id_colegio,
+        id_curso,
         rut,
         correo,
         contrasena,

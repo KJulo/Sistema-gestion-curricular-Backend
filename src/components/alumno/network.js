@@ -83,8 +83,9 @@ router.patch("/:id", (req, res) => {
     .updateAlumno(
       req.params.id,
       req.body.nombres,
-      req.body.id_colegio,
       req.body.apellidos,
+      req.body.id_colegio,
+      req.body.id_curso,
       req.body.rut,
       req.body.correo,
       req.body.contrasena
