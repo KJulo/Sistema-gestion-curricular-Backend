@@ -66,16 +66,37 @@ function createCurso(nombre, anho, paralelo) {
   });
 }
 
-function updateCurso(id, nombre, anho, paralelo) {
+// id_asignatura
+//           ? { connect: { id: id_asignatura } }
+//           :
+function updateCurso(
+  id,
+  nombre,
+  anho,
+  paralelo,
+  asignatura,
+  id_asignatura,
+  id_profesor
+) {
   return new Promise((resolve, reject) => {
     if (!id && !nombre && !anho && !paralelo) {
       reject(new Error("[Curso invalido] Faltan datos"));
     } else {
+      let asignaturaCheck;
+
+      if (asignatura) {
+        asignaturaCheck = { createMany: { data: asignatura } };
+      } else if (id_asignatura) {
+        asignaturaCheck = { connect: { id: id_asignatura } };
+      }
+
       const curso = {
         id,
         nombre,
         anho,
         paralelo,
+        asignatura: asignaturaCheck,
+        id_profesor,
       };
       if (validator.validateTypeVariablesModel(currentComponent, curso)) {
         resolve(store.updateCurso(curso));

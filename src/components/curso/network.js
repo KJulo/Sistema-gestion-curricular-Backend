@@ -77,7 +77,10 @@ router.patch("/:id", (req, res) => {
       req.params.id,
       req.body.nombre,
       req.body.anho,
-      req.body.paralelo
+      req.body.paralelo,
+      req.body.asignatura,
+      req.body.id_asignatura,
+      req.body.id_profesor
     )
     .then((cursoActualizado) => {
       if (cursoActualizado.catchError) {

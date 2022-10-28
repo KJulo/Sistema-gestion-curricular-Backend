@@ -113,7 +113,7 @@ model curso_asignatura {
 model asignatura {
   id          String       @id @default(uuid())
   id_curso    String?
-  id_profesor String
+  id_profesor String?
   nombre      String
   asistencia  asistencia[]
   nota        nota[]
@@ -121,7 +121,7 @@ model asignatura {
   horario     horario[]
   curso       curso?        @relation(fields: [id_curso], references: [id], onDelete: SetNull)
 
-  profesor         profesor           @relation(fields: [id_profesor], references: [id])
+  profesor         profesor?           @relation(fields: [id_profesor], references: [id])
   curso_asignatura curso_asignatura[]
 }
 
