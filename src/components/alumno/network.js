@@ -86,9 +86,10 @@ router.patch("/:id", (req, res) => {
       req.body.apellidos,
       req.body.id_colegio,
       req.body.id_curso,
+      req.body.id_apoderado,
       req.body.rut,
       req.body.correo,
-      req.body.contrasena
+      req.body.contrasena,
     )
     .then((alumnoActualizado) => {
       if (alumnoActualizado.catchError) {

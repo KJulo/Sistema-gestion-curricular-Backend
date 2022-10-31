@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 async function getAlumno(id) {
   const alumno = await prisma.alumno.findUnique({
     where: id,
-    include: { curso: true },
+    include: { curso: true, apoderado: true },
   });
   if (alumno.curso) {
     const asignaturas = await prisma.asignatura.findMany({
@@ -40,6 +40,7 @@ async function updateAlumno(alumno) {
     const updatedAlumno = await prisma.alumno.update({
       where: { id: alumno.id },
       data: alumno,
+      include: { apoderado: true },
     });
     return updatedAlumno;
   } catch (error) {

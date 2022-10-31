@@ -65,14 +65,16 @@ function createAsignatura(id_curso, nombre) {
   });
 }
 
-function updateAsignatura(id_curso, nombre) {
+function updateAsignatura(id, id_curso, nombre, id_profesor) {
   return new Promise((resolve, reject) => {
-    if (!id_curso && !nombre) {
+    if (!id && id_curso && !nombre) {
       reject(new Error("[Asignatura invalida] Faltan datos"));
     } else {
       const asignatura = {
+        id,
         id_curso,
         nombre,
+        id_profesor,
       };
       if (validator.validateTypeVariablesModel(currentComponent, asignatura)) {
         resolve(store.updateAsignatura(asignatura));

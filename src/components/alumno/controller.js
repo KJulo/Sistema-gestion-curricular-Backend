@@ -82,6 +82,7 @@ function updateAlumno(
   apellidos,
   id_colegio,
   id_curso,
+  id_apoderado,
   rut,
   correo,
   contrasena
@@ -105,6 +106,7 @@ function updateAlumno(
         apellidos,
         id_colegio,
         id_curso,
+        id_apoderado,
         rut,
         correo,
         contrasena,
