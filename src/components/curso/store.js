@@ -17,9 +17,11 @@ async function getCursos(query) {
 
 async function createCurso(curso) {
   try {
+    console.log(curso);
     const newCurso = await prisma.curso.create({ data: curso });
     return newCurso;
   } catch (error) {
+    console.log(error);
     if (error.meta.cause) {
       error.meta.cause = `[createCurso] ${error.meta.cause}`;
     } else {

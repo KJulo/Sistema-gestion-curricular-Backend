@@ -47,7 +47,7 @@ function getCursos(filterItems, ordersItems) {
   });
 }
 
-function createCurso(nombre, anho, paralelo) {
+function createCurso(nombre, anho, paralelo, id_profesor) {
   return new Promise((resolve, reject) => {
     if (!nombre && !anho && !paralelo) {
       reject(new Error("[Curso invalido] Faltan datos"));
@@ -56,6 +56,7 @@ function createCurso(nombre, anho, paralelo) {
         nombre,
         anho,
         paralelo,
+        id_profesor
       };
       if (validator.validateTypeVariablesModel(currentComponent, curso)) {
         resolve(store.createCurso(curso));
@@ -66,9 +67,6 @@ function createCurso(nombre, anho, paralelo) {
   });
 }
 
-// id_asignatura
-//           ? { connect: { id: id_asignatura } }
-//           :
 function updateCurso(
   id,
   nombre,
