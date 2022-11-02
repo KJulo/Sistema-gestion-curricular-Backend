@@ -5,7 +5,9 @@ const router = express.Router();
 const controller = require("./controller");
 const response = require("../../network/response");
 
-router.get("/:id", (req, res) => {
+const auth = require("../../auth");
+
+router.get("/:id",(req, res) => {
   controller
     .getAdministrador(req.params.id)
     .then((data) => {
@@ -16,7 +18,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/",auth, (req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];
