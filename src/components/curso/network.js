@@ -51,7 +51,12 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   controller
-    .createCurso(req.body.nombre, req.body.anho, req.body.paralelo, req.body.id_profesor)
+    .createCurso(
+      req.body.nombre,
+      req.body.anho,
+      req.body.paralelo,
+      req.body.id_profesor
+    )
     .then((cursoCreado) => {
       if (cursoCreado.catchError) {
         response.error(

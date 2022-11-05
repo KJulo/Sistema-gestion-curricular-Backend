@@ -7,7 +7,7 @@ const response = require("../../network/response");
 
 const auth = require("../../auth");
 
-router.get("/:id",(req, res) => {
+router.get("/:id", auth("administrador"), (req, res) => {
   controller
     .getAdministrador(req.params.id)
     .then((data) => {
@@ -18,7 +18,7 @@ router.get("/:id",(req, res) => {
     });
 });
 
-router.get("/",auth, (req, res) => {
+router.get("/", (req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];

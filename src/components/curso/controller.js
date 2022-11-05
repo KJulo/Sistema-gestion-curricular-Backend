@@ -56,7 +56,7 @@ function createCurso(nombre, anho, paralelo, id_profesor) {
         nombre,
         anho,
         paralelo,
-        id_profesor
+        id_profesor,
       };
       if (validator.validateTypeVariablesModel(currentComponent, curso)) {
         resolve(store.createCurso(curso));

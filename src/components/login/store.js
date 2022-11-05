@@ -14,17 +14,15 @@ async function getLogin(user) {
     if (login.length > 0) {
       delete login[0].contrasena;
       const secretKey = process.env.SECRET_KEY;
-      const token = jwt.sign(login[0],secretKey)
-      return token;
+      const token = jwt.sign({ ...login[0], role: user.type }, secretKey, {
+        expiresIn: "1d",
+      });
+      return { token, ...login[0] };
     }
-    return { error: "Usuario y/o contraseña invalida" };
+    const error = new Error("Usuario y/o contraseña incorrectas");
+    error.status = 401;
+    throw error;
   } catch (error) {
-    console.log(error);
-    if (error.meta.cause) {
-      error.meta.cause = `[getLogin] ${error.meta.cause}`;
-    } else {
-      error.meta.cause = `[getLogin] ${error.meta.field_name}`;
-    }
     return { catchError: true, ...error };
   }
 }

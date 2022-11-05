@@ -8,7 +8,7 @@ const app = express();
 
 app.set("port", config.port);
 app.set("json spaces", 2);
-app.use(cors());
+app.use(cors({ credentials: true, origin: true }));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
