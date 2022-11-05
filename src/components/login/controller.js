@@ -6,8 +6,9 @@ function login(rut, password, type) {
       reject(new Error("[Login invalido] Faltan datos"));
     } else if (
       type === "alumno" ||
+      type === "apoderado" ||
       type === "profesor" ||
-      type === "administrador"
+      type === "administrador" 
     ) {
       const loginI = {
         rut,

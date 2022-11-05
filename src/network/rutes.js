@@ -13,6 +13,8 @@ const apoderado = require("../components/apoderado/network");
 const horario = require("../components/horario/network");
 const asignatura = require("../components/asignatura/network");
 const login = require("../components/login/network");
+const forgotPassword = require("../components/forgotPassword/network");
+const mail = require("../components/mail/network");
 
 // Arreglo de rutas
 const router = (server) => {
@@ -30,6 +32,8 @@ const router = (server) => {
   server.use("/horario", horario);
   server.use("/asignatura", asignatura);
   server.use("/login", login);
+  server.use("/forgotPassword", forgotPassword);
+  server.use("/mail", mail);
 };
 
 module.exports = router;

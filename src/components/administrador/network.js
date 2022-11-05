@@ -1,10 +1,8 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
-
 const auth = require("../../auth");
 
 router.get("/:id", auth("administrador"), (req, res) => {
@@ -18,7 +16,7 @@ router.get("/:id", auth("administrador"), (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/", auth("administrador"), (req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];

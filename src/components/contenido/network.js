@@ -1,11 +1,11 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
+const auth = require("../../auth");
 
-router.get("/:id", (req, res) => {
+router.get("/:id",auth("administrador","profesor","apoderados","alumnos"), (req, res) => {
   controller
     .getContenido(req.params)
     .then((contenido) => {
@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/",auth("administrador","profesor","apoderados","alumnos"), (req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];
@@ -49,7 +49,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/",auth("administrador","profesor"), (req, res) => {
   controller
     .createContenido(
       req.body.id_foro,
@@ -76,7 +76,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id",auth("administrador","profesor"), (req, res) => {
   controller
     .updateContenido(
       req.params.id,
@@ -104,7 +104,7 @@ router.patch("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id",auth("administrador","profesor"), (req, res) => {
   controller
     .deleteContenido(req.params.id)
     .then((contenidoEliminado) => {

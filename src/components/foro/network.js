@@ -1,11 +1,11 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
+const auth = require("../../auth");
 
-router.get("/:id", (req, res) => {
+router.get("/:id",auth("administrador","profesor","alumnos","apoderados"),  (req, res) => {
   controller
     .getForo(req.params)
     .then((foro) => {
@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/",auth("administrador","profesor","alumnos","apoderados"),  (req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];
@@ -49,7 +49,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/",auth("administrador","profesor"),  (req, res) => {
   controller
     .createForo(req.body.id_asignatura, req.body.titulo)
     .then((foroCreado) => {
@@ -71,7 +71,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id",auth("administrador","profesor"),  (req, res) => {
   controller
     .updateForo(req.params.id, req.body.id_asignatura, req.body.titulo)
     .then((foroActualizado) => {
@@ -93,7 +93,7 @@ router.patch("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id",auth("administrador","profesor"),  (req, res) => {
   controller
     .deleteForo(req.params.id)
     .then((foroEliminado) => {

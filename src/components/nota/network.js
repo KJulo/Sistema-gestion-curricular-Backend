@@ -1,11 +1,11 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
+const auth = require("../../auth");
 
-router.get("/:id", (req, res) => {
+router.get("/:id",auth("administrador","profesor","apoderado","profesor"), (req, res) => {
   controller
     .getNota(req.params)
     .then((nota) => {
@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/",auth("administrador","profesor","apoderado","profesor"), (req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];
@@ -49,7 +49,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/",auth("administrador","profesor"), (req, res) => {
   controller
     .createNota(
       req.body.id_asignatura,
@@ -78,7 +78,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id",auth("administrador","profesor"), (req, res) => {
   controller
     .updateNota(
       req.params.id,
@@ -107,7 +107,7 @@ router.patch("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id",auth("administrador","profesor"), (req, res) => {
   controller
     .deleteNota(req.params.id)
     .then((notaEliminada) => {

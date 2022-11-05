@@ -1,11 +1,11 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
+const auth = require("../../auth");
 
-router.get("/:id", (req, res) => {
+router.get("/:id",auth("administrador","profesor","apoderado","alumno"), (req, res) => {
   controller
     .getColegio(req.params)
     .then((colegio) => {
@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/",auth("administrador","profesor","apoderado","alumno"), (req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];
@@ -49,7 +49,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/",auth("administrador","profesor","apoderado","alumno"), (req, res) => {
   controller
     .createColegio(req.body.nombre, req.body.direccion)
     .then((colegioCreado) => {
@@ -71,7 +71,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id",auth("administrador"),(req, res) => {
   controller
     .updateColegio(req.params.id, req.body.nombre, req.body.direccion)
     .then((colegioActualizado) => {
@@ -93,7 +93,7 @@ router.patch("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id",auth("administrador"), (req, res) => {
   controller
     .deleteColegio(req.params.id)
     .then((colegioEliminado) => {

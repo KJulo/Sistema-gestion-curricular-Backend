@@ -1,11 +1,11 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
+const auth = require("../../auth");
 
-router.get("/:id", (req, res) => {
+router.get("/:id",auth("administrador","profesor","apoderado","estudiante"), (req, res) => {
   controller
     .getNotificacion(req.params)
     .then((notificacion) => {
@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/", auth("administrador","profesor","apoderado","estudiante"),(req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];
@@ -49,7 +49,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/",auth("administrador","profesor"), (req, res) => {
   controller
     .createNotificacion(
       req.body.id_curso,
@@ -76,7 +76,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id",auth("administrador","profesor"), (req, res) => {
   controller
     .updateNotificacion(
       req.params.id,

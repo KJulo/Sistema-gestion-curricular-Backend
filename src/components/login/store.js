@@ -17,7 +17,7 @@ async function getLogin(user) {
       const token = jwt.sign({ ...login[0], role: user.type }, secretKey, {
         expiresIn: "1d",
       });
-      return { token, ...login[0] };
+      return { token, type: user.type, ...login[0] };
     }
     const error = new Error("Usuario y/o contraseña incorrectas");
     error.status = 401;
