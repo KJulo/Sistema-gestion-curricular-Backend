@@ -71,7 +71,7 @@ function createNota(
         id_alumno,
         nombre,
         ponderacion,
-        fecha,
+        fecha: new Date(fecha).toISOString(),
         descripcion,
       };
       if (validator.validateTypeVariablesModel(currentComponent, notaI)) {
