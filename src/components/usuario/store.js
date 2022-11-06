@@ -41,17 +41,21 @@ async function forgotPassword(user) {
       where: { id: idUser },
       data: { contrasena: randomstring },
     });
-    const titulo = "Recuperación de contraseña";
-    const mensaje = `Hola ${updatedUser.nombres} ${updatedUser.apellidos}. Su nueva contraseña es: ${randomstring}`;
-
-    await controller
-      .sendEmail(titulo, mensaje, updatedUser.correo)
-      .then((data) => data)
-      .catch((error) => {
-        throw error;
-      });
-
-    return "Se ha enviado la nueva contraseña a su correo, si no lo encuentra revise su bandeja de spam";
+    if (updatedUser.correo) {
+      const titulo = "Recuperación de contraseña";
+      const mensaje = `Hola ${updatedUser.nombres} ${updatedUser.apellidos}. Su nueva contraseña es: ${randomstring}`;
+      await controller
+        .sendEmail(titulo, mensaje, updatedUser.correo)
+        .then((data) => data)
+        .catch((error) => {
+          throw error;
+        });
+      return "Se ha enviado la nueva contraseña a su correo, si no lo encuentra revise su bandeja de spam";
+    }
+    const error = new Error();
+    error.status = 404;
+    error.message = "No se ha encontrado un correo asociado a este usuario";
+    return { catchError: true, ...error };
   } catch (error) {
     return { catchError: true, ...error };
   }
