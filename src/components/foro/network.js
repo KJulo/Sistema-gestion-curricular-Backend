@@ -5,51 +5,59 @@ const controller = require("./controller");
 const response = require("../../network/response");
 const auth = require("../../auth");
 
-router.get("/:id",auth("administrador","profesor","alumnos","apoderados"),  (req, res) => {
-  controller
-    .getForo(req.params)
-    .then((foro) => {
-      response.success(req, res, foro, null, 200);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
-
-router.get("/",auth("administrador","profesor","alumnos","apoderados"),  (req, res) => {
-  const filterItems = {};
-  const orders = [];
-  let orderItems = [];
-
-  if (Object.keys(req.query).length !== 0) {
-    Object.keys(req.query).forEach((key) => {
-      if (
-        key !== "id" &&
-        key !== "offset" &&
-        key !== "limit" &&
-        key !== "orderBy"
-      ) {
-        filterItems[key] = req.query[key];
-      } else if (key === "orderBy") {
-        orderItems = req.query[key].split(",");
-        orderItems.forEach((orderItem) => {
-          const item = orderItem.split(" ");
-          orders.push({ attribute: item[0], type: item[1] });
-        });
-      }
-    });
+router.get(
+  "/:id",
+  auth("administrador", "profesor", "alumnos", "apoderados"),
+  (req, res) => {
+    controller
+      .getForo(req.params)
+      .then((foro) => {
+        response.success(req, res, foro, null, 200);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
   }
-  controller
-    .getForos(filterItems, orders)
-    .then((foros) => {
-      response.success(req, res, foros, null, 200);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
+);
 
-router.post("/",auth("administrador","profesor"),  (req, res) => {
+router.get(
+  "/",
+  auth("administrador", "profesor", "alumnos", "apoderados"),
+  (req, res) => {
+    const filterItems = {};
+    const orders = [];
+    let orderItems = [];
+
+    if (Object.keys(req.query).length !== 0) {
+      Object.keys(req.query).forEach((key) => {
+        if (
+          key !== "id" &&
+          key !== "offset" &&
+          key !== "limit" &&
+          key !== "orderBy"
+        ) {
+          filterItems[key] = req.query[key];
+        } else if (key === "orderBy") {
+          orderItems = req.query[key].split(",");
+          orderItems.forEach((orderItem) => {
+            const item = orderItem.split(" ");
+            orders.push({ attribute: item[0], type: item[1] });
+          });
+        }
+      });
+    }
+    controller
+      .getForos(filterItems, orders)
+      .then((foros) => {
+        response.success(req, res, foros, null, 200);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
+  }
+);
+
+router.post("/", auth("administrador", "profesor"), (req, res) => {
   controller
     .createForo(req.body.id_asignatura, req.body.titulo)
     .then((foroCreado) => {
@@ -71,7 +79,7 @@ router.post("/",auth("administrador","profesor"),  (req, res) => {
     });
 });
 
-router.patch("/:id",auth("administrador","profesor"),  (req, res) => {
+router.patch("/:id", auth("administrador", "profesor"), (req, res) => {
   controller
     .updateForo(req.params.id, req.body.id_asignatura, req.body.titulo)
     .then((foroActualizado) => {
@@ -93,7 +101,7 @@ router.patch("/:id",auth("administrador","profesor"),  (req, res) => {
     });
 });
 
-router.delete("/:id",auth("administrador","profesor"),  (req, res) => {
+router.delete("/:id", auth("administrador", "profesor"), (req, res) => {
   controller
     .deleteForo(req.params.id)
     .then((foroEliminado) => {

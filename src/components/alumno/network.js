@@ -5,7 +5,7 @@ const controller = require("./controller");
 const response = require("../../network/response");
 const auth = require("../../auth");
 
-router.get("/:id",auth("adm"), (req, res) => {
+router.get("/:id", auth("adm"), (req, res) => {
   controller
     .getAlumno(req.params)
     .then((alumno) => {

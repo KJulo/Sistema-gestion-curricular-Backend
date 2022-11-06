@@ -5,16 +5,20 @@ const controller = require("./controller");
 const response = require("../../network/response");
 const auth = require("../../auth");
 
-router.get("/:id",auth("administrador","profesor","apoderado","alumno"), (req, res) => {
-  controller
-    .getAsignatura(req.params)
-    .then((asignatura) => {
-      response.success(req, res, asignatura, null, 200);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
+router.get(
+  "/:id",
+  auth("administrador", "profesor", "apoderado", "alumno"),
+  (req, res) => {
+    controller
+      .getAsignatura(req.params)
+      .then((asignatura) => {
+        response.success(req, res, asignatura, null, 200);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
+  }
+);
 
 router.get("/", (req, res) => {
   const filterItems = {};
@@ -49,18 +53,22 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/",auth("administrador","profesor","apoderado","alumno"), (req, res) => {
-  controller
-    .createAsignatura(req.body.id_curso, req.body.nombre)
-    .then((asignaturaCreada) => {
-      response.success(req, res, asignaturaCreada, null, 201);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
+router.post(
+  "/",
+  auth("administrador", "profesor", "apoderado", "alumno"),
+  (req, res) => {
+    controller
+      .createAsignatura(req.body.id_curso, req.body.nombre)
+      .then((asignaturaCreada) => {
+        response.success(req, res, asignaturaCreada, null, 201);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
+  }
+);
 
-router.patch("/:id",auth("administrador"), (req, res) => {
+router.patch("/:id", auth("administrador"), (req, res) => {
   controller
     .updateAsignatura(
       req.params.id,
@@ -87,7 +95,7 @@ router.patch("/:id",auth("administrador"), (req, res) => {
     });
 });
 
-router.delete("/:id",auth("administrador"), (req, res) => {
+router.delete("/:id", auth("administrador"), (req, res) => {
   controller
     .deleteAsignatura(req.params.id)
     .then((asignaturaEliminada) => {

@@ -7,7 +7,7 @@ const auth = require("../../auth");
 
 router.post(
   "/",
-  auth("administrador", "profesor", "alumnos", "apoderados"),
+  auth("administrador", "profesor", "alumno", "apoderado"),
   (req, res) => {
     controller
       .sendEmail(req.body.titulo, req.body.mensaje, req.body.destinatarios)

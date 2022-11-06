@@ -5,7 +5,7 @@ const controller = require("./controller");
 const response = require("../../network/response");
 const auth = require("../../auth");
 
-router.get("/:id", auth("administrador","profesor"), (req, res) => {
+router.get("/:id", auth("administrador", "profesor"), (req, res) => {
   controller
     .getApoderado(req.params)
     .then((apoderado) => {
@@ -49,7 +49,7 @@ router.get("/", auth("administrador", "profesor"), (req, res) => {
     });
 });
 
-router.post("/",auth("adminstrador"), (req, res) => {
+router.post("/", auth("adminstrador"), (req, res) => {
   controller
     .createApoderado(
       req.body.nombres,
@@ -80,7 +80,7 @@ router.post("/",auth("adminstrador"), (req, res) => {
     });
 });
 
-router.patch("/:id",auth("adminstrador"), (req, res) => {
+router.patch("/:id", auth("adminstrador"), (req, res) => {
   controller
     .updateApoderado(
       req.params.id,
@@ -109,7 +109,7 @@ router.patch("/:id",auth("adminstrador"), (req, res) => {
     });
 });
 
-router.delete("/:id",auth("adminstrador"), (req, res) => {
+router.delete("/:id", auth("adminstrador"), (req, res) => {
   controller
     .deleteApoderado(req.params.id)
     .then((apoderadoEliminado) => {
