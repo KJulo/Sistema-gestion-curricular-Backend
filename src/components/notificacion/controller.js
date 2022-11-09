@@ -56,7 +56,7 @@ function createNotificacion(id_curso, titulo, descripcion, fecha) {
         id_curso,
         titulo,
         descripcion,
-        fecha,
+        fecha: new Date(fecha).toISOString(),
       };
       if (
         validator.validateTypeVariablesModel(currentComponent, notificacion)

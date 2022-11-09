@@ -1,55 +1,63 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
+const auth = require("../../auth");
 
-router.get("/:id", (req, res) => {
-  controller
-    .getNotificacion(req.params)
-    .then((notificacion) => {
-      response.success(req, res, notificacion, null, 200);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
-
-router.get("/", (req, res) => {
-  const filterItems = {};
-  const orders = [];
-  let orderItems = [];
-
-  if (Object.keys(req.query).length !== 0) {
-    Object.keys(req.query).forEach((key) => {
-      if (
-        key !== "id" &&
-        key !== "offset" &&
-        key !== "limit" &&
-        key !== "orderBy"
-      ) {
-        filterItems[key] = req.query[key];
-      } else if (key === "orderBy") {
-        orderItems = req.query[key].split(",");
-        orderItems.forEach((orderItem) => {
-          const item = orderItem.split(" ");
-          orders.push({ attribute: item[0], type: item[1] });
-        });
-      }
-    });
+router.get(
+  "/:id",
+  auth("administrador", "profesor", "apoderado", "estudiante"),
+  (req, res) => {
+    controller
+      .getNotificacion(req.params)
+      .then((notificacion) => {
+        response.success(req, res, notificacion, null, 200);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
   }
-  controller
-    .getNotificaciones(filterItems, orders)
-    .then((notificaciones) => {
-      response.success(req, res, notificaciones, null, 200);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
+);
 
-router.post("/", (req, res) => {
+router.get(
+  "/",
+  auth("administrador", "profesor", "apoderado", "estudiante"),
+  (req, res) => {
+    const filterItems = {};
+    const orders = [];
+    let orderItems = [];
+
+    if (Object.keys(req.query).length !== 0) {
+      Object.keys(req.query).forEach((key) => {
+        if (
+          key !== "id" &&
+          key !== "offset" &&
+          key !== "limit" &&
+          key !== "orderBy"
+        ) {
+          filterItems[key] = req.query[key];
+        } else if (key === "orderBy") {
+          orderItems = req.query[key].split(",");
+          orderItems.forEach((orderItem) => {
+            const item = orderItem.split(" ");
+            orders.push({ attribute: item[0], type: item[1] });
+          });
+        }
+      });
+    }
+    controller
+      .getNotificaciones(filterItems, orders)
+      .then((notificaciones) => {
+        response.success(req, res, notificaciones, null, 200);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
+  }
+);
+
+router.post("/", auth("administrador", "profesor"), (req, res) => {
   controller
     .createNotificacion(
       req.body.id_curso,
@@ -76,7 +84,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id", auth("administrador", "profesor"), (req, res) => {
   controller
     .updateNotificacion(
       req.params.id,
@@ -97,6 +105,28 @@ router.patch("/:id", (req, res) => {
         );
       } else {
         response.success(req, res, notificacionActualizada, null, 200);
+      }
+    })
+    .catch((err) => {
+      response.error(req, res, "Error inesperado", null, 500, err);
+    });
+});
+
+router.delete("/:id", auth("administrador", "profesor"), (req, res) => {
+  controller
+    .deleteNotificacion(req.params.id)
+    .then((notificacionEliminada) => {
+      if (notificacionEliminada.catchError) {
+        response.error(
+          req,
+          res,
+          "Error inesperado",
+          null,
+          500,
+          notificacionEliminada.meta.cause
+        );
+      } else {
+        response.success(req, res, notificacionEliminada, null, 200);
       }
     })
     .catch((err) => {

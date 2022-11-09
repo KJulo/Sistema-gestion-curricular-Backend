@@ -19,8 +19,8 @@ model administrador {
   id_colegio String
   nombres    String
   apellidos  String
-  rut        String
-  contrasena String
+  rut        String @unique
+  contrasena String 
 
   colegio colegio @relation(fields: [id_colegio], references: [id])
 }
@@ -29,11 +29,11 @@ model apoderado {
   id                 String   @id @default(uuid())
   nombres            String
   apellidos          String
-  rut                String
+  rut                String   @unique
   contrasena         String
-  correo             String
+  correo             String   @unique
   telefono           String
-  telefonoEmergencia String? @default("")
+  telefonoEmergencia String?  @default("")
   direccion          String
   alumno             alumno[]
 }
@@ -55,13 +55,13 @@ model alumno {
   id_curso     String?
   nombres      String
   apellidos    String
-  rut          String
-  correo       String
+  rut          String  @unique
+  correo       String  @unique
   contrasena   String
 
   asistencia asistencia[]
   nota       nota[]
-  curso      curso?      @relation(fields: [id_curso], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  curso      curso?       @relation(fields: [id_curso], references: [id], onDelete: SetNull, onUpdate: Cascade)
   apoderado  apoderado?   @relation(fields: [id_apoderado], references: [id])
   colegio    colegio      @relation(fields: [id_colegio], references: [id])
 }
@@ -72,7 +72,7 @@ model profesor {
   nombres    String
   apellidos  String
   rut        String
-  correo     String
+  correo     String       @unique
   contrasena String
   asignatura asignatura[]
   curso      curso[]
@@ -119,9 +119,9 @@ model asignatura {
   nota        nota[]
   foro        foro[]
   horario     horario[]
-  curso       curso?        @relation(fields: [id_curso], references: [id], onDelete: SetNull)
+  curso       curso?       @relation(fields: [id_curso], references: [id], onDelete: SetNull)
 
-  profesor         profesor?           @relation(fields: [id_profesor], references: [id])
+  profesor         profesor?          @relation(fields: [id_profesor], references: [id])
   curso_asignatura curso_asignatura[]
 }
 

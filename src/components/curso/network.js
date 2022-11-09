@@ -1,57 +1,70 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
+const auth = require("../../auth");
 
-router.get("/:id", (req, res) => {
-  controller
-    .getCurso(req.params)
-    .then((curso) => {
-      response.success(req, res, curso, null, 200);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
-
-router.get("/", (req, res) => {
-  const filterItems = {};
-  const orders = [];
-  let orderItems = [];
-
-  if (Object.keys(req.query).length !== 0) {
-    Object.keys(req.query).forEach((key) => {
-      if (
-        key !== "id" &&
-        key !== "offset" &&
-        key !== "limit" &&
-        key !== "orderBy"
-      ) {
-        filterItems[key] = req.query[key];
-      } else if (key === "orderBy") {
-        orderItems = req.query[key].split(",");
-        orderItems.forEach((orderItem) => {
-          const item = orderItem.split(" ");
-          orders.push({ attribute: item[0], type: item[1] });
-        });
-      }
-    });
+router.get(
+  "/:id",
+  auth("administrador", "profesor", "alumnos", "apoderados"),
+  (req, res) => {
+    controller
+      .getCurso(req.params)
+      .then((curso) => {
+        response.success(req, res, curso, null, 200);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
   }
-  controller
-    .getCursos(filterItems, orders)
-    .then((cursos) => {
-      response.success(req, res, cursos, null, 200);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
+);
 
-router.post("/", (req, res) => {
+router.get(
+  "/",
+  auth("administrador", "profesor", "alumnos", "apoderados"),
+  (req, res) => {
+    const filterItems = {};
+    const orders = [];
+    let orderItems = [];
+
+    if (Object.keys(req.query).length !== 0) {
+      Object.keys(req.query).forEach((key) => {
+        if (
+          key !== "id" &&
+          key !== "offset" &&
+          key !== "limit" &&
+          key !== "orderBy"
+        ) {
+          filterItems[key] = req.query[key];
+        } else if (key === "orderBy") {
+          orderItems = req.query[key].split(",");
+          orderItems.forEach((orderItem) => {
+            const item = orderItem.split(" ");
+            orders.push({ attribute: item[0], type: item[1] });
+          });
+        }
+      });
+    }
+    controller
+      .getCursos(filterItems, orders)
+      .then((cursos) => {
+        response.success(req, res, cursos, null, 200);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
+  }
+);
+
+router.post("/", auth("administrador"), (req, res) => {
   controller
-    .createCurso(req.body.nombre, req.body.anho, req.body.paralelo, req.body.id_profesor)
+    .createCurso(
+      req.body.nombre,
+      req.body.anho,
+      req.body.paralelo,
+      req.body.id_profesor
+    )
     .then((cursoCreado) => {
       if (cursoCreado.catchError) {
         response.error(
@@ -71,7 +84,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id", auth("administrador"), (req, res) => {
   controller
     .updateCurso(
       req.params.id,
@@ -101,7 +114,7 @@ router.patch("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth("administrador"), (req, res) => {
   controller
     .deleteCurso(req.params.id)
     .then((cursoEliminado) => {

@@ -1,11 +1,11 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
+const auth = require("../../auth");
 
-router.get("/:id", (req, res) => {
+router.get("/:id", auth("administrador", "profesor"), (req, res) => {
   controller
     .getApoderado(req.params)
     .then((apoderado) => {
@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/", auth("administrador", "profesor"), (req, res) => {
   const filterItems = {};
   const orders = [];
   let orderItems = [];
@@ -49,7 +49,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", auth("administrador"), (req, res) => {
   controller
     .createApoderado(
       req.body.nombres,
@@ -80,7 +80,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id", auth("administrador"), (req, res) => {
   controller
     .updateApoderado(
       req.params.id,
@@ -109,7 +109,7 @@ router.patch("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth("administrador"), (req, res) => {
   controller
     .deleteApoderado(req.params.id)
     .then((apoderadoEliminado) => {

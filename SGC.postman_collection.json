@@ -13,11 +13,24 @@
           "name": "Administradores",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{url}}/administrador",
               "host": ["{{url}}"],
-              "path": ["administrador"]
+              "path": ["administrador"],
+              "query": [
+                {
+                  "key": "x-auth-token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyOTkxMjlmLWNmYzItNGVjYy1iNDliLTQ0YjAxOGQ5MTk3NCIsImlkX2NvbGVnaW8iOiJjMzRkMjJkYy1kZmU3LTQwNzAtYWZkMS1kNGRjZTA1YWM3MWEiLCJub21icmVzIjoiSWduYWNpbyBSZW7DqSIsImFwZWxsaWRvcyI6IlNpbHZhIEVsb3J6YSIsInJ1dCI6IjIwLjM1OC43MTUtNSIsImlhdCI6MTY2NzM1MDMxMX0.QbBpVPbq4IOIABfWdYqkH044dj7ulXA8Tj5Mt-Ltq5A",
+                  "disabled": true
+                }
+              ]
             }
           },
           "response": []
@@ -150,6 +163,112 @@
       ]
     },
     {
+      "name": "Apoderado",
+      "item": [
+        {
+          "name": "Apoderados",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/apoderado",
+              "host": ["{{url}}"],
+              "path": ["apoderado"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Apoderado",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/apoderado/:id",
+              "host": ["{{url}}"],
+              "path": ["apoderado", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "688a2ee6-2a49-4fa8-a995-6e9e7c1e0d6a"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Apoderado",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombres\":\"Ignacio René\",\r\n    \"apellidos\": \"Silva Elorza\",\r\n    \"rut\": \"20358715-5\",\r\n    \"contrasena\": \"1234\",\r\n    \"correo\": \"example@example.com\",\r\n    \"telefono\": \"+56912345678\",\r\n    \"telefonoEmergencia\": \"+56941205886\",\r\n    \"direccion\": \"Av.Frei 3844\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/apoderado",
+              "host": ["{{url}}"],
+              "path": ["apoderado"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Apoderado",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"telefono\": \"+56941205886\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/apoderado/:id",
+              "host": ["{{url}}"],
+              "path": ["apoderado", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "8de540d3-4b55-4053-a0a3-6a7f013eefdd"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Apoderado",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/apoderado/:id",
+              "host": ["{{url}}"],
+              "path": ["apoderado", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "8de540d3-4b55-4053-a0a3-6a7f013eefdd"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Archivo",
       "item": [
         {
@@ -265,6 +384,43 @@
       ]
     },
     {
+      "name": "Asignatura",
+      "item": [
+        {
+          "name": "Asignaturas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/asignatura",
+              "host": ["{{url}}"],
+              "path": ["asignatura"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Asignatura",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/asignatura/:id",
+              "host": ["{{url}}"],
+              "path": ["asignatura", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Asistencia",
       "item": [
         {
@@ -306,7 +462,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"id_curso\": \"adc598ea-ec8d-48ff-b3fb-98951224170f\",\r\n    \"id_alumno\": \"1f3f22e2-d7b6-4e33-92c6-c59116f79e46\",\r\n    \"asistencia\": \"true\",\r\n    \"fecha\": \"2022-11-04\"\r\n}",
+              "raw": "{\r\n    \"id_asignatura\": \"7b2717e2-6ac7-44f1-875f-47ed0747cf97\",\r\n    \"id_alumno\": \"1a0b5c4f-1cf7-4016-a936-1559487d42d2\",\r\n    \"asistencia\": \"true\",\r\n    \"fecha\": \"2022-11-04\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -795,6 +951,43 @@
       ]
     },
     {
+      "name": "Horario",
+      "item": []
+    },
+    {
+      "name": "Mail",
+      "item": [
+        {
+          "name": "Enviar Mail",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"titulo\":\"testing titulo\",\r\n    \"mensaje\": \"testing mensaje\",\r\n    \"destinatarios\": \"ignacio.silva.e@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/mail",
+              "host": ["{{url}}"],
+              "path": ["mail"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Nota",
       "item": [
         {
@@ -892,6 +1085,112 @@
                 {
                   "key": "id",
                   "value": "14fa17ae-6300-480b-a180-e347777f0ddb"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notificación",
+      "item": [
+        {
+          "name": "Notificaciones",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notificacion",
+              "host": ["{{url}}"],
+              "path": ["notificacion"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Notificación",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notificacion/:id",
+              "host": ["{{url}}"],
+              "path": ["notificacion", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Notificación",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_curso\":\"2b034593-851c-4244-9768-37d8ae391e7f\",\r\n    \"titulo\":\"Testing titulo\",\r\n    \"descripcion\":\"Testing descripcion\",\r\n    \"fecha\":\"2022-11-12\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/notificacion",
+              "host": ["{{url}}"],
+              "path": ["notificacion"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Notificación",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"titulo\": \"change titulo\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/notificacion/:id",
+              "host": ["{{url}}"],
+              "path": ["notificacion", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "9ad90753-b5d6-4bc6-9a6a-aed80452491c"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Notificación",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notificacion/:id",
+              "host": ["{{url}}"],
+              "path": ["notificacion", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "9ad90753-b5d6-4bc6-9a6a-aed80452491c"
                 }
               ]
             }
@@ -1007,40 +1306,16 @@
       ]
     },
     {
-      "name": "Horario",
-      "item": []
-    },
-    {
-      "name": "Asignatura",
-      "item": []
-    },
-    {
-      "name": "Apoderado",
+      "name": "Usuario",
       "item": [
         {
-          "name": "Apoderados",
-          "request": {
-            "method": "GET",
-            "header": []
-          },
-          "response": []
-        },
-        {
-          "name": "Apoderado",
-          "request": {
-            "method": "GET",
-            "header": []
-          },
-          "response": []
-        },
-        {
-          "name": "Crear Apoderado",
+          "name": "Ingreso de sesión",
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"nombres\":\"Ignacio René\",\r\n    \"apellidos\": \"Silva Elorza\",\r\n    \"rut\": \"20358715-5\",\r\n    \"contraseña\": \"1234\",\r\n    \"telefonoEmergencia\": \"+56941205886\"\r\n}",
+              "raw": "{\r\n    \"type\":\"administrador\",\r\n    \"rut\":\"20.358.715-5\",\r\n    \"password\":\"1234\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1048,14 +1323,72 @@
               }
             },
             "url": {
-              "raw": "{{url}}/apoderado",
+              "raw": "{{url}}/usuario/login",
               "host": ["{{url}}"],
-              "path": ["apoderado"]
+              "path": ["usuario", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Recuperación de contraseña",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rut\": \"20.358.715-5\",\r\n    \"type\": \"profesor\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/usuario/forgotPassword",
+              "host": ["{{url}}"],
+              "path": ["usuario", "forgotPassword"]
             }
           },
           "response": []
         }
       ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-auth-token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyOTkxMjlmLWNmYzItNGVjYy1iNDliLTQ0YjAxOGQ5MTk3NCIsImlkX2NvbGVnaW8iOiJjMzRkMjJkYy1kZmU3LTQwNzAtYWZkMS1kNGRjZTA1YWM3MWEiLCJub21icmVzIjoiSWduYWNpbyBSZW7DqSIsImFwZWxsaWRvcyI6IlNpbHZhIEVsb3J6YSIsInJ1dCI6IjIwLjM1OC43MTUtNSIsInJvbGUiOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNjY3OTU5NzM1LCJleHAiOjE2NjgwNDYxMzV9.Uv9NhivQZsAbppTk-P1FIyOaFhJyfRhVtQPWVkTKuWw",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
     }
   ]
 }

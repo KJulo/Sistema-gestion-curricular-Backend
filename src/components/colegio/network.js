@@ -1,77 +1,89 @@
 const express = require("express");
 
 const router = express.Router();
-
 const controller = require("./controller");
 const response = require("../../network/response");
+const auth = require("../../auth");
 
-router.get("/:id", (req, res) => {
-  controller
-    .getColegio(req.params)
-    .then((colegio) => {
-      response.success(req, res, colegio, null, 200);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
-
-router.get("/", (req, res) => {
-  const filterItems = {};
-  const orders = [];
-  let orderItems = [];
-
-  if (Object.keys(req.query).length !== 0) {
-    Object.keys(req.query).forEach((key) => {
-      if (
-        key !== "id" &&
-        key !== "offset" &&
-        key !== "limit" &&
-        key !== "orderBy"
-      ) {
-        filterItems[key] = req.query[key];
-      } else if (key === "orderBy") {
-        orderItems = req.query[key].split(",");
-        orderItems.forEach((orderItem) => {
-          const item = orderItem.split(" ");
-          orders.push({ attribute: item[0], type: item[1] });
-        });
-      }
-    });
+router.get(
+  "/:id",
+  auth("administrador", "profesor", "apoderado", "alumno"),
+  (req, res) => {
+    controller
+      .getColegio(req.params)
+      .then((colegio) => {
+        response.success(req, res, colegio, null, 200);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
   }
-  controller
-    .getColegios(filterItems, orders)
-    .then((colegio) => {
-      response.success(req, res, colegio, null, 200);
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
+);
 
-router.post("/", (req, res) => {
-  controller
-    .createColegio(req.body.nombre, req.body.direccion)
-    .then((colegioCreado) => {
-      if (colegioCreado.catchError) {
-        response.error(
-          req,
-          res,
-          "Error inesperado",
-          null,
-          500,
-          colegioCreado.meta.cause
-        );
-      } else {
-        response.success(req, res, colegioCreado, null, 201);
-      }
-    })
-    .catch((err) => {
-      response.error(req, res, "Error inesperado", null, 500, err);
-    });
-});
+router.get(
+  "/",
+  auth("administrador", "profesor", "apoderado", "alumno"),
+  (req, res) => {
+    const filterItems = {};
+    const orders = [];
+    let orderItems = [];
 
-router.patch("/:id", (req, res) => {
+    if (Object.keys(req.query).length !== 0) {
+      Object.keys(req.query).forEach((key) => {
+        if (
+          key !== "id" &&
+          key !== "offset" &&
+          key !== "limit" &&
+          key !== "orderBy"
+        ) {
+          filterItems[key] = req.query[key];
+        } else if (key === "orderBy") {
+          orderItems = req.query[key].split(",");
+          orderItems.forEach((orderItem) => {
+            const item = orderItem.split(" ");
+            orders.push({ attribute: item[0], type: item[1] });
+          });
+        }
+      });
+    }
+    controller
+      .getColegios(filterItems, orders)
+      .then((colegio) => {
+        response.success(req, res, colegio, null, 200);
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
+  }
+);
+
+router.post(
+  "/",
+  auth("administrador", "profesor", "apoderado", "alumno"),
+  (req, res) => {
+    controller
+      .createColegio(req.body.nombre, req.body.direccion)
+      .then((colegioCreado) => {
+        if (colegioCreado.catchError) {
+          response.error(
+            req,
+            res,
+            "Error inesperado",
+            null,
+            500,
+            colegioCreado.meta.cause
+          );
+        } else {
+          response.success(req, res, colegioCreado, null, 201);
+        }
+      })
+      .catch((err) => {
+        response.error(req, res, "Error inesperado", null, 500, err);
+      });
+  }
+);
+
+router.patch("/:id", auth("administrador"), (req, res) => {
   controller
     .updateColegio(req.params.id, req.body.nombre, req.body.direccion)
     .then((colegioActualizado) => {
@@ -93,7 +105,7 @@ router.patch("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth("administrador"), (req, res) => {
   controller
     .deleteColegio(req.params.id)
     .then((colegioEliminado) => {
