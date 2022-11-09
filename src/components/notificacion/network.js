@@ -112,4 +112,26 @@ router.patch("/:id", auth("administrador", "profesor"), (req, res) => {
     });
 });
 
+router.delete("/:id", auth("administrador", "profesor"), (req, res) => {
+  controller
+    .deleteNotificacion(req.params.id)
+    .then((notificacionEliminada) => {
+      if (notificacionEliminada.catchError) {
+        response.error(
+          req,
+          res,
+          "Error inesperado",
+          null,
+          500,
+          notificacionEliminada.meta.cause
+        );
+      } else {
+        response.success(req, res, notificacionEliminada, null, 200);
+      }
+    })
+    .catch((err) => {
+      response.error(req, res, "Error inesperado", null, 500, err);
+    });
+});
+
 module.exports = router;
