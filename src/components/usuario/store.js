@@ -24,6 +24,7 @@ async function accessLogin(user) {
     error.status = 401;
     throw error;
   } catch (error) {
+    console.log(error);
     return { catchError: true, ...error };
   }
 }
