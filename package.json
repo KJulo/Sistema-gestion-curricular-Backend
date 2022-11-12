@@ -7,7 +7,9 @@
     "start": "nodemon src/server.js",
     "format": "prettier --write .",
     "lint": "eslint --fix . --ext .js",
-    "heroku-build": "prisma generate && node src/server.js"
+    "heroku-build": "prisma generate && node src/server.js",
+    "heroku-reset": "prisma migrate reset",
+    "heroku-deploy": "prisma migrate dev"
   },
   "repository": {
     "type": "git",
