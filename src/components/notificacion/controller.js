@@ -41,7 +41,7 @@ function getNotificaciones(filterItems, ordersItems) {
         query.orderBy.push({ [orderItem.attribute]: orderItem.type });
       });
     } else {
-      query.orderBy = { id: "asc" };
+      query.orderBy = { fecha: "desc" };
     }
     resolve(store.getNotificaciones(query));
   });
