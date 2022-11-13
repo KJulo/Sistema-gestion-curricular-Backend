@@ -59,7 +59,7 @@ router.get(
 
 router.post("/", auth("administrador", "profesor"), (req, res) => {
   controller
-    .createForo(req.body.id_asignatura, req.body.titulo)
+    .createForo(req.body.id_asignatura, req.body.titulo, req.body.tipo, req.body.objetivo, req.body.objetivoInicio, req.body.objetivoTermino)
     .then((foroCreado) => {
       if (foroCreado.catchError) {
         response.error(

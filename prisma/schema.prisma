@@ -152,6 +152,7 @@ model nota {
   id_asignatura String?
   nombre        String
   ponderacion   String
+  nota          String
   fecha         DateTime
   descripcion   String
 
@@ -160,13 +161,16 @@ model nota {
 }
 
 model foro {
-  id            String      @id @default(uuid())
-  id_asignatura String?
-  tipo          String?
-  titulo        String
-  objetivo      String?
-  contenido     contenido[]
-  asignatura    asignatura? @relation(fields: [id_asignatura], references: [id])
+  id              String  @id @default(uuid())
+  id_asignatura   String?
+  tipo            String?
+  titulo          String
+  objetivo        String?
+  objetivoInicio  String?
+  objetivoTermino String?
+
+  contenido  contenido[]
+  asignatura asignatura? @relation(fields: [id_asignatura], references: [id])
 }
 
 model contenido {
