@@ -5,19 +5,45 @@ const prisma = new PrismaClient();
 async function getAlumno(id) {
   const alumno = await prisma.alumno.findUnique({
     where: id,
-    include: { curso: true, apoderado: true },
+    include: {
+      curso: true,
+      apoderado: true,
+      nota: true,
+      asistencia: true,
+    },
   });
   if (alumno.curso) {
     const asignaturas = await prisma.asignatura.findMany({
       where: { curso: { id: alumno.curso.id } },
     });
-    return { ...alumno, curso: { ...alumno.curso, asignaturas } };
+    const notificacion = await prisma.notificacion.findMany({
+      where: {
+        curso: { id: alumno.curso.id },
+        fecha: { gte: new Date().toISOString() },
+      },
+      orderBy: { fecha: "asc" },
+    });
+    return { ...alumno, curso: { ...alumno.curso, asignaturas }, notificacion };
   }
   return alumno;
 }
 
 async function getAlumnos(query) {
-  const alumnos = await prisma.alumno.findMany(query);
+  const alumnos = await prisma.alumno.findMany({
+    ...query,
+    include: {
+      nota: true,
+      asistencia: true,
+      curso: {
+        include: {
+          notificacion: {
+            where: { fecha: { gte: new Date().toISOString() } },
+            orderBy: { fecha: "asc" },
+          },
+        },
+      },
+    },
+  });
   return alumnos;
 }
 

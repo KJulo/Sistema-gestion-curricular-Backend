@@ -16,9 +16,10 @@ function getNotificacion(id) {
 function getNotificaciones(filterItems, ordersItems) {
   return new Promise((resolve) => {
     const query = {};
+    query.where = {};
+    query.where = { fecha: { gte: new Date().toISOString() } };
 
     if (Object.keys(filterItems).length > 0) {
-      query.where = {};
       Object.keys(filterItems).forEach((key) => {
         const variableType = validator.getFieldType(currentComponent, key);
 
@@ -41,7 +42,7 @@ function getNotificaciones(filterItems, ordersItems) {
         query.orderBy.push({ [orderItem.attribute]: orderItem.type });
       });
     } else {
-      query.orderBy = { fecha: "desc" };
+      query.orderBy = { fecha: "asc" };
     }
     resolve(store.getNotificaciones(query));
   });
