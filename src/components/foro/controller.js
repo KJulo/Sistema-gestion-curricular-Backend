@@ -69,7 +69,7 @@ function createForo(id_asignatura, titulo, tipo, objetivo, objetivoInicio, objet
   });
 }
 
-function updateForo(id, id_asignatura, titulo) {
+function updateForo(id, id_asignatura, titulo, tipo, objetivo, objetivoInicio, objetivoTermino) {
   return new Promise((resolve, reject) => {
     if (!id && !id_asignatura && !titulo) {
       reject(new Error("[Foro invalido] Faltan datos"));
@@ -78,6 +78,10 @@ function updateForo(id, id_asignatura, titulo) {
         id,
         id_asignatura,
         titulo,
+        tipo,
+        objetivo,
+        objetivoInicio,
+        objetivoTermino,
       };
       if (validator.validateTypeVariablesModel(currentComponent, foro)) {
         resolve(store.updateForo(foro));

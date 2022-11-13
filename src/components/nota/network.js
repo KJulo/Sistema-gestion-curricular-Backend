@@ -64,6 +64,7 @@ router.post("/", auth("administrador", "profesor"), (req, res) => {
       req.body.id_alumno,
       req.body.nombre,
       req.body.ponderacion,
+      req.body.nota,
       req.body.fecha,
       req.body.descripcion
     )
@@ -94,6 +95,8 @@ router.patch("/:id", auth("administrador", "profesor"), (req, res) => {
       req.body.id_alumno,
       req.body.nombre,
       req.body.ponderacion,
+      req.body.nota,
+      req.body.fecha,
       req.body.descripcion
     )
     .then((notaActualizada) => {

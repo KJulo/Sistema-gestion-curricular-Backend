@@ -52,6 +52,7 @@ function createNota(
   id_alumno,
   nombre,
   ponderacion,
+  nota,
   fecha,
   descripcion
 ) {
@@ -61,6 +62,7 @@ function createNota(
       !id_alumno &&
       !nombre &&
       !ponderacion &&
+      !nota &&
       !fecha &&
       !descripcion
     ) {
@@ -71,6 +73,7 @@ function createNota(
         id_alumno,
         nombre,
         ponderacion,
+        nota,
         fecha: new Date(fecha).toISOString(),
         descripcion,
       };
@@ -89,6 +92,8 @@ function updateNota(
   id_alumno,
   nombre,
   ponderacion,
+  nota,
+  fecha,
   descripcion
 ) {
   return new Promise((resolve, reject) => {
@@ -98,6 +103,8 @@ function updateNota(
       !id_alumno &&
       !nombre &&
       !ponderacion &&
+      !nota &&
+      !fecha &&
       !descripcion
     ) {
       reject(new Error("[Nota invalida] Faltan datos"));
@@ -108,6 +115,8 @@ function updateNota(
         id_alumno,
         nombre,
         ponderacion,
+        nota,
+        fecha: new Date(fecha).toISOString(),
         descripcion,
       };
       if (validator.validateTypeVariablesModel(currentComponent, notaI)) {
