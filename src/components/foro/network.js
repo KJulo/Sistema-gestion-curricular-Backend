@@ -7,7 +7,7 @@ const auth = require("../../auth");
 
 router.get(
   "/:id",
-  auth("administrador", "profesor", "alumnos", "apoderados"),
+  auth("administrador", "profesor", "alumno", "apoderado"),
   (req, res) => {
     controller
       .getForo(req.params)
@@ -22,7 +22,7 @@ router.get(
 
 router.get(
   "/",
-  auth("administrador", "profesor", "alumnos", "apoderados"),
+  auth("administrador", "profesor", "alumno", "apoderado"),
   (req, res) => {
     const filterItems = {};
     const orders = [];
@@ -59,7 +59,7 @@ router.get(
 
 router.post("/", auth("administrador", "profesor"), (req, res) => {
   controller
-    .createForo(req.body.id_asignatura, req.body.titulo)
+    .createForo(req.body.id_asignatura, req.body.titulo, req.body.tipo, req.body.objetivo, req.body.objetivoInicio, req.body.objetivoTermino)
     .then((foroCreado) => {
       if (foroCreado.catchError) {
         response.error(

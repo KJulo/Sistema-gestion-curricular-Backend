@@ -7,7 +7,7 @@ const auth = require("../../auth");
 
 router.get(
   "/:id",
-  auth("administrador", "profesor", "apoderado", "estudiante"),
+  auth("administrador", "profesor", "apoderado", "alumno"),
   (req, res) => {
     controller
       .getProfesor(req.params)
@@ -22,7 +22,7 @@ router.get(
 
 router.get(
   "/",
-  auth("administrador", "profesor", "apoderado", "estudiante"),
+  auth("administrador", "profesor", "apoderado", "alumno"),
   (req, res) => {
     const filterItems = {};
     const orders = [];
