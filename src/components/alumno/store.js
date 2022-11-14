@@ -32,8 +32,8 @@ async function getAlumnos(query) {
   const alumnos = await prisma.alumno.findMany({
     ...query,
     include: {
-      nota: {include: { asignatura: true}},
-      asistencia: {include: { asignatura: true}},
+      nota: { include: { asignatura: true } },
+      asistencia: { include: { asignatura: true } },
       curso: {
         include: {
           notificacion: {

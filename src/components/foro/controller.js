@@ -47,7 +47,14 @@ function getForos(filterItems, ordersItems) {
   });
 }
 
-function createForo(id_asignatura, titulo, tipo, objetivo, objetivoInicio, objetivoTermino) {
+function createForo(
+  id_asignatura,
+  titulo,
+  tipo,
+  objetivo,
+  objetivoInicio,
+  objetivoTermino
+) {
   return new Promise((resolve, reject) => {
     if (!id_asignatura && !titulo) {
       reject(new Error("[Foro invalido] Faltan datos"));
@@ -69,7 +76,15 @@ function createForo(id_asignatura, titulo, tipo, objetivo, objetivoInicio, objet
   });
 }
 
-function updateForo(id, id_asignatura, titulo, tipo, objetivo, objetivoInicio, objetivoTermino) {
+function updateForo(
+  id,
+  id_asignatura,
+  titulo,
+  tipo,
+  objetivo,
+  objetivoInicio,
+  objetivoTermino
+) {
   return new Promise((resolve, reject) => {
     if (!id && !id_asignatura && !titulo) {
       reject(new Error("[Foro invalido] Faltan datos"));

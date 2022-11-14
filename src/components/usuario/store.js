@@ -35,22 +35,24 @@ async function forgotPassword(user) {
         rut: user.rut,
       },
     });
-    const idUser = userPassword[0].id;
-    const randomstring = Math.random().toString(36).slice(-8);
-    const updatedUser = await prisma[`${user.type}`].update({
-      where: { id: idUser },
-      data: { contrasena: randomstring },
-    });
-    if (updatedUser.correo) {
-      const titulo = "Recuperación de contraseña";
-      const mensaje = `Hola ${updatedUser.nombres} ${updatedUser.apellidos}. Su nueva contraseña es: ${randomstring}`;
-      await controller
-        .sendEmail(titulo, mensaje, updatedUser.correo)
-        .then((data) => data)
-        .catch((error) => {
-          throw error;
-        });
-      return "Se ha enviado la nueva contraseña a su correo, si no lo encuentra revise su bandeja de spam";
+    if (userPassword.length > 0) {
+      const idUser = userPassword[0].id;
+      const randomstring = Math.random().toString(36).slice(-8);
+      const updatedUser = await prisma[`${user.type}`].update({
+        where: { id: idUser },
+        data: { contrasena: randomstring },
+      });
+      if (updatedUser.correo) {
+        const titulo = "Recuperación de contraseña";
+        const mensaje = `Hola ${updatedUser.nombres} ${updatedUser.apellidos}. Su nueva contraseña es: ${randomstring}`;
+        await controller
+          .sendEmail(titulo, mensaje, updatedUser.correo)
+          .then((data) => data)
+          .catch((error) => {
+            throw error;
+          });
+        return "Se ha enviado la nueva contraseña a su correo, si no lo encuentra revise su bandeja de spam";
+      }
     }
     const error = new Error();
     error.status = 404;

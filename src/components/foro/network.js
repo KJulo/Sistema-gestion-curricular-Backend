@@ -59,7 +59,14 @@ router.get(
 
 router.post("/", auth("administrador", "profesor"), (req, res) => {
   controller
-    .createForo(req.body.id_asignatura, req.body.titulo, req.body.tipo, req.body.objetivo, req.body.objetivoInicio, req.body.objetivoTermino)
+    .createForo(
+      req.body.id_asignatura,
+      req.body.titulo,
+      req.body.tipo,
+      req.body.objetivo,
+      req.body.objetivoInicio,
+      req.body.objetivoTermino
+    )
     .then((foroCreado) => {
       if (foroCreado.catchError) {
         response.error(
@@ -81,7 +88,15 @@ router.post("/", auth("administrador", "profesor"), (req, res) => {
 
 router.patch("/:id", auth("administrador", "profesor"), (req, res) => {
   controller
-    .updateForo(req.params.id, req.body.id_asignatura, req.body.titulo, req.body.tipo, req.body.objetivo, req.body.objetivoInicio, req.body.objetivoTermino)
+    .updateForo(
+      req.params.id,
+      req.body.id_asignatura,
+      req.body.titulo,
+      req.body.tipo,
+      req.body.objetivo,
+      req.body.objetivoInicio,
+      req.body.objetivoTermino
+    )
     .then((foroActualizado) => {
       if (foroActualizado.catchError) {
         response.error(
