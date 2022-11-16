@@ -36,7 +36,25 @@ function forgotPassword(rut, type) {
   });
 }
 
+function changePassword(id, password, newPassword, confirmNewPassword, type) {
+  return new Promise((resolve, reject) => {
+    if (!id || !password || !newPassword || !confirmNewPassword || !type) {
+      reject(new Error("[Datos invalidos] Faltan datos"));
+    } else {
+      const data = {
+        id,
+        password,
+        newPassword,
+        confirmNewPassword,
+        type,
+      };
+      resolve(store.changePassword(data));
+    }
+  });
+}
+
 module.exports = {
   login,
   forgotPassword,
+  changePassword,
 };

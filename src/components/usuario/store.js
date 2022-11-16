@@ -63,4 +63,32 @@ async function forgotPassword(user) {
   }
 }
 
-module.exports = { accessLogin, forgotPassword };
+async function changePassword(user) {
+  try {
+    const foundUser = await prisma[`${user.type}`].findUnique({
+      where: { id: user.id },
+    });
+    if (!foundUser) throw new Error("Usuario no encontrado");
+    if (foundUser.contrasena !== user.password)
+      throw new Error("Contraseña incorrecta");
+    if (user.newPassword !== user.confirmNewPassword)
+      throw new Error("Las contraseñas no coinciden");
+    if (user.newPassword === user.password)
+      throw new Error("La nueva contraseña no puede ser igual a la anterior");
+    await prisma[`${user.type}`].update({
+      where: { id: user.id },
+      data: { contrasena: user.newPassword },
+    });
+    const mail = {
+      titulo: "Cambio de contraseña",
+      mensaje: `Hola ${foundUser.nombres} ${foundUser.apellidos}. Su contraseña ha sido cambiada exitosamente. Si usted cree que ha sido un error, por favor contacte a soporte.`,
+      correo: foundUser.correo,
+    };
+    controller.sendEmail(mail.titulo, mail.mensaje, mail.correo);
+    return "Contraseña cambiada con éxito";
+  } catch (error) {
+    return { error: error.message, catchError: true };
+  }
+}
+
+module.exports = { accessLogin, forgotPassword, changePassword };
