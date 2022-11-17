@@ -14,7 +14,31 @@ async function getAsistencias(query) {
 
 async function createAsistencia(asistencia) {
   try {
-    const newAsistencia = await prisma.asistencia.create({ data: asistencia });
+    const asistenciaExist = await prisma.asistencia.findMany({
+      where: {
+        fecha: { in: asistencia.fecha },
+        id_asignatura: { contains: asistencia.asignatura.connect.id },
+        id_alumno: { contains: asistencia.alumno.connect.id },
+      },
+    });
+
+    if (asistenciaExist.length > 0) {
+      const asistenciaI = {
+        id: asistenciaExist[0].id,
+        asistencia: asistencia.asistencia,
+        id_alumno: asistencia.alumno.connect.id,
+        id_asignatura: asistencia.asignatura.connect.id,
+        fecha: asistencia.fecha,
+      };
+      const updatedAsistencia = await prisma.asistencia.update({
+        where: { id: asistenciaI.id },
+        data: asistenciaI,
+      });
+      return updatedAsistencia;
+    }
+    const newAsistencia = await prisma.asistencia.create({
+      data: asistencia,
+    });
     return newAsistencia;
   } catch (error) {
     if (error.meta.cause) {
