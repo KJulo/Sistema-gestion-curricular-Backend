@@ -12,13 +12,21 @@ async function accessLogin(user) {
         contrasena: user.password,
       },
     });
+    const colegio = await prisma.colegio.findMany({
+      where: { id: login[0].id_colegio },
+    });
+    let nombre_colegio;
+    if (colegio.length > 0) {
+      nombre_colegio = colegio[0].nombre;
+    }
+
     if (login.length > 0) {
       delete login[0].contrasena;
       const secretKey = process.env.SECRET_KEY;
       const token = jwt.sign({ ...login[0], role: user.type }, secretKey, {
         expiresIn: "1d",
       });
-      return { token, type: user.type, ...login[0] };
+      return { token, type: user.type, ...login[0], nombre_colegio };
     }
     const error = new Error("Usuario y/o contraseña incorrectas");
     error.status = 401;
