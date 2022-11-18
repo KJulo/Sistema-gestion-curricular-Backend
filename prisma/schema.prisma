@@ -61,7 +61,7 @@ model alumno {
   contrasena   String
 
   asistencia asistencia[]
-  nota       nota[]
+  nota       nota[] 
   curso      curso?       @relation(fields: [id_curso], references: [id], onDelete: SetNull, onUpdate: Cascade)
   apoderado  apoderado?   @relation(fields: [id_apoderado], references: [id])
   colegio    colegio      @relation(fields: [id_colegio], references: [id])
@@ -156,8 +156,8 @@ model nota {
   fecha         DateTime
   descripcion   String
 
-  asignatura asignatura? @relation(fields: [id_asignatura], references: [id])
-  alumno     alumno?     @relation(fields: [id_alumno], references: [id])
+  asignatura asignatura? @relation(fields: [id_asignatura], references: [id], onDelete: Cascade)
+  alumno     alumno?     @relation(fields: [id_alumno], references: [id], onDelete: Cascade)
 }
 
 model foro {
