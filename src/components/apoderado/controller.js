@@ -92,18 +92,23 @@ function updateApoderado(
   id,
   nombres,
   apellidos,
-  contrasena,
   telefono,
-  telefonoEmergencia
+  telefonoEmergencia,
+  direccion,
+  rut,
+  correo,
+  contrasena
 ) {
   return new Promise((resolve, reject) => {
     if (
       !id &&
       !nombres &&
       !apellidos &&
-      !contrasena &&
       !telefono &&
-      !telefonoEmergencia
+      !direccion &&
+      !rut &&
+      !correo &&
+      !contrasena
     ) {
       reject(new Error("[Apoderado invalido] Faltan datos"));
     } else {
@@ -111,9 +116,12 @@ function updateApoderado(
         id,
         nombres,
         apellidos,
-        contrasena,
         telefono,
         telefonoEmergencia,
+        direccion,
+        rut,
+        correo,
+        contrasena,
       };
       if (validator.validateTypeVariablesModel(currentComponent, apoderado)) {
         resolve(store.updateApoderado(apoderado));

@@ -86,9 +86,12 @@ router.patch("/:id", auth("administrador"), (req, res) => {
       req.params.id,
       req.body.nombres,
       req.body.apellidos,
-      req.body.contraseña,
       req.body.telefono,
-      req.body.telefonoEmergencia
+      req.body.telefonoEmergencia,
+      req.body.direccion,
+      req.body.rut,
+      req.body.correo,
+      req.body.contrasena,
     )
     .then((apoderadoActualizado) => {
       if (apoderadoActualizado.catchError) {
