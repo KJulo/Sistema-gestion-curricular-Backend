@@ -7,7 +7,7 @@ Se debe tener instalado Node JS para la ejecución y buildeo del proyecto, en es
 Se debe además crear un archivo .env en la raiz del proyecto. El archivo .env debe contener los siguientes parámetros.
 
 ### Puerto del servidor 
-- `/PORT: *Puerto donde correrá la aplicación`
+- `PORT: *Puerto donde correrá la aplicación`
 ### Base de datos
 - `DATABASE_URL: *String para la conexión de la base de datos`
 ### JWT Token
@@ -23,7 +23,7 @@ Se debe además crear un archivo .env en la raiz del proyecto. El archivo .env d
 
 ## Instalación
 
-- Instalar las dependencias del proyecto ingresando el comando `npm run install`
+- Instalar las dependencias del proyecto ingresando el comando `npm install`
 
   ### Base de datos
 
@@ -31,7 +31,7 @@ Se debe además crear un archivo .env en la raiz del proyecto. El archivo .env d
 
     - Segundo, se debe generar el schema de prisma, para eso se utiliza el comando `npx prisma generate`.
 
-    - Tercero, para ingresar un administrador (ya que sin él no se podrá entrar a la aplicación y generar nuevos usuarios) se debe utilizar el comando `npx prisma studio` para generar una interfaz visual de la base de datos e ingresar el administrador correspondiente.
+    - Tercero y por ultimo, para tener acceso a la sitio web, primero se debe crear un colegio correspondiente y además el administrador o administradores a cargo del sistema. Es por esto es que se requiere ingresar manualmente estos dos datos. Para crearlos se debe utilizar el comando `npx prisma studio` para generar una interfaz visual de la base de datos e ingresar los datos correspondientes.
 
 - Luego de haber realizado todo con respecto a la base de datos, se debe ingresar el siguiente comando `npm run start` y se ejecutará la aplicación.
 
