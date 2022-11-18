@@ -17,6 +17,8 @@ Se debe además crear un archivo .env en la raiz del proyecto. El archivo .env d
 - `MAILGUN_DOMAIN: *Dominio del servicio de correos`
 - `MAILGUN_API_KEY: *Llave de acceso para el servicio de correos`
 
+### Configuración de front
+ - `FRONT_URL= *Url del sitio web`
 ##### Sin estas dos variables no se podrá enviar correos.
 
 ## Instalación

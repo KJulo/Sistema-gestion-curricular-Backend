@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const { sendEmail } = require("../mail/controller");
 
 const prisma = new PrismaClient();
 
@@ -18,6 +19,11 @@ async function getApoderados(query) {
 async function createApoderado(apoderado) {
   try {
     const newApoderado = await prisma.apoderado.create({ data: apoderado });
+    sendEmail(
+      "Bienvenido al Colegio Fuensalvida - Apoderado",	
+      `Te damos la bienvenido a la plataforma del colegio Fuensalvida, para ingresar a la plataforma debes ingresar a la siguiente dirección: ${process.env.FRONT_URL}/login con el siguiente rut y contraseña: ${newApoderado.rut} - ${newApoderado.contrasena}`,
+      newApoderado.correo
+    )
     return newApoderado;
   } catch (error) {
     if (error.meta.cause) {

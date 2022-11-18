@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const { sendEmail } = require("../mail/controller");
 
 const prisma = new PrismaClient();
 
@@ -18,6 +19,11 @@ async function getProfesores(query) {
 async function createProfesor(profesor) {
   try {
     const newProfesor = await prisma.profesor.create({ data: profesor });
+    sendEmail(
+      "Bienvenido al Colegio Fuensalvida - Profesor",
+      `Te damos la bienvenido a la plataforma del colegio Fuensalvida, para ingresar a la plataforma debes ingresar a la siguiente dirección: ${process.env.FRONT_URL}/login con el siguiente rut y contraseña: ${newProfesor.rut} - ${newProfesor.contrasena}`,
+      newProfesor.correo
+    );
     return newProfesor;
   } catch (error) {
     if (error.meta.cause) {
