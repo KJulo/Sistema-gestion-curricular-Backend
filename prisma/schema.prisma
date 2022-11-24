@@ -27,16 +27,17 @@ model administrador {
 }
 
 model apoderado {
-  id                 String   @id @default(uuid())
+  id                 String  @id @default(uuid())
   nombres            String
   apellidos          String
-  rut                String   @unique
+  rut                String  @unique
   contrasena         String
-  correo             String   @unique
+  correo             String  @unique
   telefono           String
-  telefonoEmergencia String?  @default("")
+  telefonoEmergencia String? @default("")
   direccion          String
-  alumno             alumno[]
+
+  alumno alumno[]
 }
 
 model colegio {
@@ -61,30 +62,32 @@ model alumno {
   contrasena   String
 
   asistencia asistencia[]
-  nota       nota[] 
+  nota       nota[]
   curso      curso?       @relation(fields: [id_curso], references: [id], onDelete: SetNull, onUpdate: Cascade)
   apoderado  apoderado?   @relation(fields: [id_apoderado], references: [id])
   colegio    colegio      @relation(fields: [id_colegio], references: [id])
 }
 
 model profesor {
-  id         String       @id @default(uuid())
+  id         String @id @default(uuid())
   id_colegio String
   nombres    String
   apellidos  String
-  rut        String       @unique
-  correo     String       @unique
+  rut        String @unique
+  correo     String @unique
   contrasena String
+
   asignatura asignatura[]
   curso      curso[]
 }
 
 model curso {
-  id               String             @id @default(uuid())
-  nombre           String
-  anho             String
-  paralelo         String
-  id_profesor      String?
+  id          String  @id @default(uuid())
+  id_profesor String?
+  nombre      String
+  anho        String
+  paralelo    String
+
   asignatura       asignatura[]
   alumno           alumno[]
   curso_asignatura curso_asignatura[]
@@ -112,38 +115,40 @@ model curso_asignatura {
 }
 
 model asignatura {
-  id          String       @id @default(uuid())
+  id          String  @id @default(uuid())
   id_curso    String?
   id_profesor String?
   nombre      String
-  asistencia  asistencia[]
-  nota        nota[]
-  foro        foro[]
-  horario     horario[]
-  curso       curso?       @relation(fields: [id_curso], references: [id], onDelete: SetNull)
+
+  asistencia asistencia[]
+  nota       nota[]
+  foro       foro[]
+  horario    horario[]
+  curso      curso?       @relation(fields: [id_curso], references: [id], onDelete: SetNull)
 
   profesor         profesor?          @relation(fields: [id_profesor], references: [id])
   curso_asignatura curso_asignatura[]
 }
 
 model horario {
-  id            String @id @default(uuid())
+  id            String   @id @default(uuid())
   id_asignatura String
-  dia           String
-  horaInicio    String
-  horaTermino   String
+  dia           DateTime
+  horaInicio    DateTime
+  horaTermino   DateTime
 
   asignatura asignatura @relation(fields: [id_asignatura], references: [id])
 }
 
 model asistencia {
-  id            String      @id @default(uuid())
+  id            String   @id @default(uuid())
   id_alumno     String?
   id_asignatura String?
   asistencia    String
   fecha         DateTime
-  alumno        alumno?     @relation(fields: [id_alumno], references: [id])
-  asignatura    asignatura? @relation(fields: [id_asignatura], references: [id])
+
+  alumno     alumno?     @relation(fields: [id_alumno], references: [id])
+  asignatura asignatura? @relation(fields: [id_asignatura], references: [id])
 }
 
 model nota {
@@ -163,8 +168,8 @@ model nota {
 model foro {
   id              String  @id @default(uuid())
   id_asignatura   String?
-  tipo            String?
   titulo          String
+  tipo            String?
   objetivo        String?
   objetivoInicio  String?
   objetivoTermino String?
@@ -177,8 +182,8 @@ model contenido {
   id          String @id @default(uuid())
   id_foro     String
   titulo      String
-  descripcion String
   tipo        String
+  descripcion String
 
   archivo archivo[]
   foro    foro      @relation(fields: [id_foro], references: [id])
